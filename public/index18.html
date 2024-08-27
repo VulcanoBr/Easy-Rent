@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema de Reserva Online</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+      <a class="navbar-brand" href="#">Aluguel de Equipamentos</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Catálogo</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Histórico de Aluguéis</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Perfil</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Suporte</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Login</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero text-center">
+    <div class="container">
+      <h1>Sistema de Reserva Online</h1>
+      <p>Reserve seus equipamentos favoritos de forma rápida e fácil.</p>
+    </div>
+  </section>
+
+  <!-- Formulário de Reserva -->
+  <section class="py-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <form>
+            <!-- Seleção de Equipamento -->
+            <div class="mb-3">
+              <label for="equipmentSelect" class="form-label">Selecionar Equipamento</label>
+              <select class="form-select" id="equipmentSelect">
+                <option selected>Escolha um equipamento...</option>
+                <option value="1">Câmera DSLR</option>
+                <option value="2">Iluminação LED</option>
+                <option value="3">Microfone de Estúdio</option>
+              </select>
+            </div>
+
+            <!-- Calendário de Disponibilidade -->
+            <div class="mb-3">
+              <label for="startDate" class="form-label">Data de Início</label>
+              <input type="date" class="form-control" id="startDate">
+            </div>
+            <div class="mb-3">
+              <label for="endDate" class="form-label">Data de Término</label>
+              <input type="date" class="form-control" id="endDate">
+            </div>
+
+            <!-- Resumo do Pedido -->
+            <div class="card mb-3">
+              <div class="card-body">
+                <h5 class="card-title">Resumo do Pedido</h5>
+                <p class="card-text">Equipamento: <strong id="selectedEquipment">Nenhum selecionado</strong></p>
+                <p class="card-text">Período: <strong id="selectedPeriod">Selecione as datas</strong></p>
+                <p class="card-text">Total Estimado: <strong id="estimatedTotal">R$ 0,00</strong></p>
+              </div>
+            </div>
+
+            <!-- Botão de Reserva -->
+            <button type="submit" class="btn btn-primary w-100">Reservar Agora</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer text-center bg-primary text-white py-3">
+    <div class="container">
+      <p>&copy; 2024 Aluguel de Equipamentos. Todos os direitos reservados.</p>
+      <ul class="list-inline">
+        <li class="list-inline-item"><a href="#" class="text-white">Política de Privacidade</a></li>
+        <li class="list-inline-item"><a href="#" class="text-white">Termos de Uso</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

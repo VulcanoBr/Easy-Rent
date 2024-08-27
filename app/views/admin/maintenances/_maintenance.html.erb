@@ -1,0 +1,46 @@
+<div class="container" id="<%= dom_id maintenance %>">
+  <% flash.each do |key, value| %>
+    <div data-controller="flash-message" data-action="click->flash-message#removeMessage" id="flash-message" class="flash <%= key %> alert alert-success bold text-black" data-flash-message-target="message"><%= value %></div>
+  <% end %>
+  <div class="mb-4 card card-primary">
+    <div class="card-header bg-primary text-white text-center">
+      <h4>Detalhes da Manutenção</h4>
+    </div>
+    <div class="card-body">
+      <div class="mb-3">
+        <span class="flex-grow-1 fw-bold">Equipamento</span>
+        <span class="mx-3"><%= maintenance.equipament.name %></span>
+      </div>
+      <div class="mb-3">
+        <span class="flex-grow-1 fw-bold">Número de Série</span>
+        <span class="mx-3"><%= maintenance.equipament.serial_number %></span>
+      </div>
+      <div class="mb-3">
+        <span class="flex-grow-1 fw-bold">Tipo Manutenção</span>
+        <span class="mx-3"><%= maintenance&.maintenance_type %></span>
+      </div>
+      <div class="mb-3">
+        <span class="flex-grow-1 fw-bold">Data Início</span>
+        <span class="mx-3"><%= maintenance&.period_start.strftime('%d/%m/%Y') %></span>
+      </div>
+      <div class="mb-3">
+        <span class="flex-grow-1 fw-bold">Data Fim</span>
+        <span class="mx-3"><%= maintenance.period_end&.strftime('%d/%m/%Y') %></span>
+      </div>
+      <div class="mb-3">
+        <span class="flex-grow-1 fw-bold">Status</span>
+        <span class="mx-3"><%= maintenance&.status %></span>
+      </div>
+      <div class="mb-3">
+        <span class="flex-grow-1 fw-bold">Valor Manutenção</span>
+        <span class="mx-3"><%= number_to_currency(maintenance&.maintenance_value, unit: "R$ ", separator: ",", delimiter: ".") %></span>
+      </div>
+      <div class="card-footer d-flex justify-content-between">
+        <% if maintenance.status != "finished" %>
+          <%= link_to "Editar", edit_admin_maintenance_path(maintenance), class: "btn btn-primary me-2" %>
+        <% end %>
+        <%= link_to "Ver Lista", admin_maintenances_path, class: "btn btn-secondary" %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+<header class="bg-dark text-white p-2 fixed-top">
+  <div class="container-fluid d-flex justify-content-between align-items-center">
+    <div class="d-flex align-items-center">
+      <%= image_tag('svg/engrenagem.svg', class: 'img-fluid', alt: 'logo equiporent', style: "width: 70%; height: auto;") %>
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item me-5"><%= link_to 'Home', root_path, class: "nav-link text-white" %></li>
+          <% if customer_signed_in? %>
+            <li class="nav-item me-5"><%= link_to 'Alugueis', my_rental_history_path, class: "nav-link text-white" %></li>
+          <% end %>
+          <li class="nav-item me-5"><%= link_to 'Sobre', sobre_path, class: 'nav-link text-white' %></li>
+          <li class="nav-item me-5"><%= link_to 'Contato', new_contact_path, class: 'nav-link text-white' %></li>
+        </ul>
+        <% if customer_signed_in? %>
+          <div class="d-flex align-items-center ms-lg-3">
+            <span class="text-white me-3"><%= current_customer.email %></span>
+            <%= link_to destroy_customer_session_path, data: { "turbo-method": :delete }, class: "btn btn-danger" do %>
+              Logout
+            <% end %>
+          </div>
+        <% else %>
+          <%= link_to 'Log in', new_customer_session_path, class: "btn btn-outline-light ms-lg-3" %>
+        <% end %>
+      </div>
+    </nav>
+  </div>
+</header>

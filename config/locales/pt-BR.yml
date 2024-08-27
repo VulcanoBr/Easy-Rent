@@ -1,0 +1,6 @@
+pt-BR:
+  devise:
+    failure:
+      unauthenticated: 'Você precisa fazer login ou se registrar antes de continuar.'
+      customer:
+        unauthenticated: 'Você precisa fazer login como cliente antes de continuar.'

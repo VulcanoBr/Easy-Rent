@@ -1,0 +1,62 @@
+/* Cor de fundo para a seção de contato */
+.contact-section {
+  background-color: #f4f7f6;
+  padding: 80px 0;
+}
+
+/* Estilo para os botões de envio */
+.btn-submit {
+  background-color: #1e88e5;
+  border-color: #1e88e5;
+}
+
+.btn-submit:hover {
+  background-color: #1565c0;
+  border-color: #1565c0;
+}
+
+/* Estilo para os ícones das redes sociais */
+.social-icons a {
+  color: #333;
+  font-size: 24px;
+  margin-right: 10px;
+}
+
+.social-icons a:hover {
+  color: #1e88e5;
+}
+
+/* Estilo para as informações de contato */
+.contact-info p {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+/* Estilo para o formulário de contato */
+.contact-form input[type='text'],
+.contact-form input[type='email'],
+.contact-form textarea {
+  border-radius: 0;
+  border-color: #ccc;
+}
+
+.contact-form input[type='text']:focus,
+.contact-form input[type='email']:focus,
+.contact-form textarea:focus {
+  border-color: #1e88e5;
+  box-shadow: none;
+}
+
+.contact-form label {
+  color: #333;
+}
+
+.contact-form textarea {
+  height: 150px;
+}
+
+/* Estilo para os cabeçalhos das seções */
+.section-header h2 {
+  color: #333;
+  margin-bottom: 30px;
+}

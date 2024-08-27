@@ -1,0 +1,72 @@
+<section class="container mt-3 mb-3">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card mb-4">
+        <div class="card-header bg-primary text-white text-center">
+          <h4>Entre em Contato</h4>
+        </div>
+        <div class="card-body">
+          <%= simple_form_for @contact, url: contacts_path, html: { data: { turbo: false } } do |f| %>
+            <div class="mb-3">
+              <%= f.input :name, label: 'Nome', input_html: { class: 'form-control', placeholder: 'Digite seu nome' }, required: true %>
+            </div>
+            <div class="mb-3">
+              <%= f.input :email, label: 'Email', input_html: { class: 'form-control', placeholder: 'Digite seu email' }, required: true %>
+            </div>
+            <div class="mb-3">
+              <%= f.input :subject, label: 'Assunto', input_html: { class: 'form-control', placeholder: 'Digite o assunto' }, required: true %>
+            </div>
+            <div class="mb-3">
+              <%= f.input :message, as: :text, label: 'Mensagem', input_html: { class: 'form-control', rows: 5, placeholder: 'Digite sua mensagem' }, required: true %>
+            </div>
+            <div class="d-grid gap-2">
+              <%= f.button :submit, 'Enviar', class: 'btn btn-primary btn-block' %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <!-- Informações de Contato -->
+    <div class="col-md-6">
+      <div class="card mb-4">
+        <div class="card-header bg-primary text-white text-center">
+          <h4>Informações de Contato</h4>
+        </div>
+        <div class="card-body">
+          <p><strong>Endereço:</strong> Rua Exemplo, 123 - Cidade, Estado</p>
+          <p><strong>Telefone:</strong> (99) 9999-9999</p>
+          <p><strong>Email:</strong> contato@equiporent.com</p>
+        </div>
+      </div>
+      <!-- Redes Sociais -->
+      <div class="card">
+        <div class="card-header bg-primary text-white text-center">
+          <h4>Redes Sociais</h4>
+        </div>
+        <div class="card-body">
+          <ul class="list-unstyled">
+            <li><a href="#" class="text-decoration-none"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+            <li><a href="#" class="text-decoration-none"><i class="fab fa-twitter"></i> Twitter</a></li>
+            <li><a href="#" class="text-decoration-none"><i class="fab fa-instagram"></i> Instagram</a></li>
+            <li><a href="#" class="text-decoration-none"><i class="fab fa-linkedin"></i> Linkedin</a></li>
+            <!-- Adicione outros ícones e links conforme necessário -->
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    var flashMessage = document.getElementById('flash-message');
+    if (flashMessage) {
+      setTimeout(function() {
+        flashMessage.style.display = 'none';
+      }, 5000); // Remove the flash message after 5 seconds
+
+      document.addEventListener('click', function() {
+        flashMessage.style.display = 'none';
+      });
+    }
+  });
+</script>

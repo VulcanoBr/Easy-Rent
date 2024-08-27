@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lista de Equipamentos - AlugaTudo</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <!-- Cabeçalho -->
+  <header class="bg-dark text-white p-3">
+    <div class="container d-flex justify-content-between align-items-center">
+      <h1>AlugaTudo</h1>
+      <nav>
+        <ul class="nav">
+          <li class="nav-item"><a class="nav-link text-white" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="#">Equipamentos</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="#">Clientes</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="#">Pedidos</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="#">Sobre</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="#">Contato</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Título da Página -->
+  <section class="container py-5">
+    <h2 class="mb-4">Lista de Equipamentos</h2>
+
+    <!-- Campo de Pesquisa -->
+    <form class="mb-4">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Pesquisar equipamento" aria-label="Pesquisar equipamento"
+          aria-describedby="button-search">
+        <button class="btn btn-primary" type="button" id="button-search">Pesquisar</button>
+      </div>
+    </form>
+
+    <!-- Lista de Equipamentos -->
+    <div class="row">
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <img src="foto-equipamento1.jpg" class="card-img-top" alt="Equipamento 1">
+          <div class="card-body">
+            <h5 class="card-title"><a href="detalhes-equipamento.html" class="text-decoration-none">Equipamento 1</a>
+            </h5>
+            <p class="card-text">Preço: R$ 100,00</p>
+            <p class="card-text">Status: Disponível</p>
+            <a href="aluguel.html" class="btn btn-primary"><i class="fas fa-shopping-cart"></i> Alugar</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <img src="foto-equipamento2.jpg" class="card-img-top" alt="Equipamento 2">
+          <div class="card-body">
+            <h5 class="card-title"><a href="detalhes-equipamento.html" class="text-decoration-none">Equipamento 2</a>
+            </h5>
+            <p class="card-text">Preço: R$ 200,00</p>
+            <p class="card-text">Status: Alugado</p>
+          </div>
+        </div>
+      </div>
+      <!-- Adicione mais cartões conforme necessário -->
+    </div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"></script>
+</body>
+
+</html>

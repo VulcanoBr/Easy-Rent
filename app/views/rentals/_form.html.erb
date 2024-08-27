@@ -1,0 +1,127 @@
+<section class="container mt-4 mb-4">
+  <div class="row justify-content-center">
+    <div class="col-md-8 mb-4">
+      <div class="card mb-3">
+        <div class="card-header bg-primary text-white text-center">
+          <h4>Alugar Equipamento</h4>
+        </div>
+        <div class="card-body" data-controller="rental">
+          <%= simple_form_for @order, url: rentals_path, html: { class: 'form-horizontal' } do |f| %>
+            <!-- Campos de Periodo e Calculo do aluguel  -->
+            <%= f.input :customer_id, as: :hidden, input_html: { value: current_customer.id } %>
+            <%= f.input :equipament_id, as: :hidden, input_html: { value: @equipament.id } %>
+            <%= f.input :rent_value, as: :hidden, input_html: { value: @equipament.rent_value, "data-rental-target": "rentValue" } %>
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label for="customer_name" class="form-label">Customer Name:</label>
+                <div class="form-control-plaintext">
+                  <%= current_customer.name %>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label for="equipament_name" class="form-label">Equipament Name:</label>
+                <div class="form-control-plaintext">
+                  <%= @equipament.name %>
+                </div>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <%= f.input :period_start, as: :date, html5: true, input_html: { class: 'form-control', min: @min_date,
+                    required: true, "data-rental-target": "startDate", "data-action": "change->rental#calculateTotal" } %>
+              </div>
+              <div class="col-md-6">
+                <%= f.input :period_end, as: :date, html5: true, input_html: { class: 'form-control', min: Date.today.strftime('%d-%m-%Y'),
+                    required: true, "data-rental-target": "endDate", "data-action": "change->rental#calculateTotal rental#showPaymentOptions" } %>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <%= label_tag :formated_rent_value, 'Diária', class: 'form-label' %>
+                <%= text_field_tag :formated_rent_value, number_to_currency(@equipament.rent_value, unit: "R$ ", separator: ",", delimiter: "."), class: 'form-control', readonly: true, required: true %>
+              </div>
+              <div class="col-md-6">
+                <%= f.input :tot_rent_value_display, as: :string, input_html: { class: 'form-control', readonly: true, "data-rental-target": "totalValueDisplay" } %>
+                <%= f.hidden_field :tot_rent_value, "data-rental-target": "totalValue" %>
+              </div>
+            </div>
+            <!-- Campos de Pagamento -->
+            <!-- Campos de Pagamento -->
+            <div class="card-body" data-controller="payment" data-action="rental:totalCalculated@window->payment#totalCalculated">
+              <%= hidden_field_tag :tot_rent_value, @order.tot_rent_value %>
+              <%= hidden_field_tag :order_id, @order.id %>
+              <div class="row mb-3 d-none" data-rental-target="paymentOptions">
+                <div class="col-md-12">
+                  <label for="payment_method" class="form-label">Método de Pagamento:</label>
+                  <div class="form-check">
+                    <%= f.radio_button :payment_method, 'cartao', class: 'form-check-input', checked: (@order.payment_method == 'cartao'), data: { action: "payment#togglePaymentFields" } %>
+                    <%= f.label :payment_method_cartao, 'Cartão de Crédito', class: 'form-check-label' %>
+                  </div>
+                  <div class="form-check">
+                    <%= f.radio_button :payment_method, 'pix', class: 'form-check-input', data: { action: "payment#togglePaymentFields" } %>
+                    <%= f.label :payment_method_pix, 'PIX', class: 'form-check-label' %>
+                  </div>
+                  <div class="form-check">
+                    <%= f.radio_button :payment_method, 'boleto', class: 'form-check-input', data: { action: "payment#togglePaymentFields" } %>
+                    <%= f.label :payment_method_boleto, 'Boleto', class: 'form-check-label' %>
+                  </div>
+                </div>
+              </div>
+              <hr>
+              <div id="credit-card-fields" class="d-none" data-payment-target="creditCardFields">
+                <div class="row mb-3">
+                  <div class="col-md-6">
+                    <%= f.input :credit_card_name, label: 'Nome no Cartão', input_html: { class: 'form-control' } %>
+                  </div>
+                  <div class="col-md-6">
+                    <%= f.input :credit_card_number, label: 'Número do Cartão', input_html: { class: 'form-control' } %>
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <div class="col-md-4">
+                    <%= f.input :credit_card_expiry_month, collection: 1..12, label: 'Mês de Validade', input_html: { class: 'form-control' } %>
+                  </div>
+                  <div class="col-md-4">
+                    <%= f.input :credit_card_expiry_year, collection: Time.now.year..(Time.now.year + 10), label: 'Ano de Validade', input_html: { class: 'form-control' } %>
+                  </div>
+                  <div class="col-md-4">
+                    <%= f.input :credit_card_security_code, label: 'Código de Segurança', input_html: { class: 'form-control' } %>
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <div class="col-md-12">
+                    <%= f.input :installments, label: 'Parcelas', collection: [], input_html: { class: 'form-control', 'data-payment-target': 'installments' } %>
+                  </div>
+                </div>
+              </div>
+              <div id="pix-fields" class="d-none" data-payment-target="pixFields">
+                <div class="row mb-3">
+                  <div class="col-md-6">
+                    <%= f.input :total_rent_value, as: :string, input_html: { class: 'form-control', readonly: true, "data-payment-target": "pixTotalValue" } %>
+                  </div>
+                  <div class="col-md-6">
+                    <%= f.input :pix_code, label: 'Código PIX', input_html: { class: 'form-control', readonly: true, value: '123456789012345' } %>
+                  </div>
+                </div>
+              </div>
+              <div id="boleto-fields" class="d-none" data-payment-target="boletoFields">
+                <div class="row mb-3">
+                  <div class="col-md-5">
+                    <%= f.input :total_rent_value, as: :string, input_html: { class: 'form-control', readonly: true, "data-payment-target": "boletoTotalValue" } %>
+                  </div>
+                  <div class="col-md-7">
+                    <%= f.input :ticket_barcode, label: 'Código de Barras do Boleto', input_html: { class: 'form-control', readonly: true, value: '12345678901234567890123456789012345678901234' } %>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer d-flex justify-content-between">
+              <%= link_to 'Cancelar', list_equipament_path, class: 'btn btn-secondary' %>
+              <%= f.button :submit, "Confirmar", class: "btn btn-primary" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

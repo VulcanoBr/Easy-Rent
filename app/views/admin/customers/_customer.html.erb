@@ -1,0 +1,42 @@
+<div class="container my-4" id="<%= dom_id customer %>">
+  <% flash.each do |key, value| %>
+    <div data-controller="flash-message" data-action="click->flash-message#removeMessage" id="flash-message" class="flash <%= key %> alert alert-success bold text-black" data-flash-message-target="message"><%= value %></div>
+  <% end %>
+  <div class="card mb-4">
+    <div class="card-header bg-primary text-white text-center">
+      <h4>Detalhes do Cliente</h4>
+    </div>
+    <div class="card-body">
+      <div class="mb-3 d-flex">
+        <span class="flex-grow-1 fw-bold">Nome:</span>
+        <span class="ms-3"><%= customer.name %></span>
+      </div>
+      <div class="mb-3 d-flex">
+        <span class="flex-grow-1 fw-bold">Email:</span>
+        <span class="ms-3"><%= customer.email %></span>
+      </div>
+      <div class="mb-3 d-flex">
+        <span class="flex-grow-1 fw-bold">Cpf/Cnpj:</span>
+        <span class="ms-3"><%= customer.identification %></span>
+      </div>
+      <div class="mb-3 d-flex">
+        <span class="flex-grow-1 fw-bold">Telefone:</span>
+        <span class="ms-3"><%= customer.mobile_phone %></span>
+      </div>
+      <div class="mb-3 d-flex">
+        <span class="flex-grow-1 fw-bold">Data Nascimento:</span>
+        <span class="ms-3"><%= customer.dob.strftime("%d/%m/%Y") %></span>
+      </div>
+      <div class="mb-3 d-flex">
+        <span class="flex-grow-1 fw-bold">Endereço:</span>
+        <span class="ms-3"><%= customer.address %></span>
+      </div>
+    </div>
+    <div class="card-footer d-flex justify-content-between">
+      <% if policy(customer).update? %>
+        <a href="<%= edit_admin_customer_path(customer) %>" class="btn btn-primary">Editar</a>
+      <% end %>
+      <a href="<%= admin_customers_path %>" class="btn btn-secondary">Ver Lista</a>
+    </div>
+  </div>
+</div>

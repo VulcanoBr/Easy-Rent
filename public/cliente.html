@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro de Clientes - AlugaTudo</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <!-- Cabeçalho -->
+  <header class="bg-dark text-white p-3">
+    <div class="container d-flex justify-content-between align-items-center">
+      <h1>AlugaTudo</h1>
+      <nav>
+        <ul class="nav">
+          <li class="nav-item"><a class="nav-link text-white" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="#">Equipamentos</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="#">Clientes</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="#">Pedidos</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="#">Sobre</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="#">Contato</a></li>
+        </ul>
+      </nav>
+      <button class="btn btn-outline-light">Logout</button>
+    </div>
+  </header>
+
+  <!-- Formulário de Cadastro de Clientes -->
+  <section class="container py-5">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">
+            <h2>Cadastro de Clientes</h2>
+          </div>
+          <div class="card-body">
+            <form id="clientForm">
+              <div class="mb-3">
+                <label for="name" class="form-label">Nome</label>
+                <input type="text" class="form-control" id="name" placeholder="Digite o nome do cliente" required>
+              </div>
+              <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" placeholder="Digite o email do cliente" required>
+              </div>
+              <div class="mb-3">
+                <label for="address" class="form-label">Endereço</label>
+                <input type="text" class="form-control" id="address" placeholder="Digite o endereço do cliente"
+                  required>
+              </div>
+              <div class="mb-3">
+                <label for="phone" class="form-label">Telefone</label>
+                <input type="tel" class="form-control" id="phone" placeholder="Digite o telefone do cliente" required>
+              </div>
+              <div class="mb-3">
+                <label for="cpf_cnpj" class="form-label">CPF/CNPJ</label>
+                <input type="text" class="form-control" id="cpf_cnpj" placeholder="Digite o CPF ou CNPJ do cliente"
+                  required>
+              </div>
+              <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <button type="submit" class="btn btn-primary me-md-2">Incluir</button>
+                <button type="button" class="btn btn-secondary">Alterar</button>
+                <button type="button" class="btn btn-info">Mostrar</button>
+                <button type="button" class="btn btn-danger">Deletar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tabela de Clientes -->
+  <section class="container py-5">
+    <div class="row">
+      <div class="col">
+        <h2>Lista de Clientes</h2>
+        <table class="table table-bordered table-striped">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Nome</th>
+              <th scope="col">Email</th>
+              <th scope="col">Endereço</th>
+              <th scope="col">Telefone</th>
+              <th scope="col">CPF/CNPJ</th>
+              <th scope="col">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Exemplo de cliente cadastrado -->
+            <tr>
+              <th scope="row">1</th>
+              <td>Cliente 1</td>
+              <td>cliente1@example.com</td>
+              <td>Rua Exemplo, 123</td>
+              <td>(99) 99999-9999</td>
+              <td>123.456.789-00</td>
+              <td>
+                <button class="btn btn-warning btn-sm">Editar</button>
+                <button class="btn btn-danger btn-sm">Deletar</button>
+              </td>
+            </tr>
+            <!-- Repetir para outros clientes -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"></script>
+</body>
+
+</html>

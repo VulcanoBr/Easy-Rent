@@ -1,0 +1,59 @@
+<div class="container-fluid">
+  <div class="d-flex align-items-center">
+    <h3 class="flex-grow-1">Lista de Clientes </h3>
+    <div class="input-group ms-3" style="width: 550px;">
+      <%= form_with url: admin_customers_path, method: :get, local: true, class: "d-flex w-100" do %>
+        <%= text_field_tag :search, nil, class: "form-control input-sm", placeholder: "Pesquisar Cliente(s)...", aria_label: "Pesquisar" %>
+        <%= button_tag(type: 'submit', class: "btn btn-success me-5 text-black-500 hover:underline", title: "Pesquisar", alt: "pesquisar") do %>
+          <%= image_tag "icons/gray/lupa.svg" %>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="list-actions">
+      <% if policy(Customer).create? %>
+        <%= link_to "Novo", new_admin_customer_path, class:"ms-3 btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+  <section class="">
+    <div class="row">
+      <div class="col">
+        <table class="table table-bordered table-striped">
+          <thead class="blue-header" >
+            <tr data-bs-theme="dark">
+              <th scope="col">Nome</th>
+              <th scope="col">Email</th>
+              <th scope="col">Cpf / Cnpj</th>
+              <th scope="col">Endereço</th>
+              <th scope="col">Telefone</th>
+              <th scope="col">Dt Nascimento</th>
+              <th scope="col">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Exemplo de cliente cadastrado -->
+            <% @customers.each do |customer| %>
+              <tr>
+                <td><%= customer.name %></td>
+                <td><%= customer.email %></td>
+                <td><%= customer.identification %></td>
+                <td><%= customer.address %></td>
+                <td><%= customer.mobile_phone %></td>
+                <td><%= customer.dob.strftime("%d/%m/%Y") %></td>
+                <td class="d-flex justify-content-between">
+                  <%= link_to edit_admin_customer_path(customer), title: "Edit", alt: "edit"  do %>
+                    <%= image_tag "icons/gray/edit.svg" %>
+                  <% end %>
+                  <%= link_to customer, method: :delete, data: {
+                        turbo_method: :delete, turbo_confirm: 'Are you sure?' }, 
+                        class: "text-red-500 hover:underline", title: "Delete", alt: "delete"   do  %>
+                    <%= image_tag "icons/gray/close.svg" %>
+                  <% end %>
+                </td>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </div>

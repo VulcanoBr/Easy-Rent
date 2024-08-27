@@ -2,7 +2,31 @@
 // Run that command whenever you add a new controller or create them with
 // ./bin/rails generate stimulus controllerName
 
-import { application } from "./application"
+import { application } from './application'
 
-import HelloController from "./hello_controller"
-application.register("hello", HelloController)
+import { Autocomplete } from 'stimulus-autocomplete'
+application.register('autocomplete', Autocomplete)
+
+import FlashMessageController from './flash_message_controller'
+application.register('flash-message', FlashMessageController)
+
+import HelloController from './hello_controller'
+application.register('hello', HelloController)
+
+import MaskcpfcnpjController from './maskcpfcnpj_controller'
+application.register('maskcpfcnpj', MaskcpfcnpjController)
+
+import MaskphoneController from './maskphone_controller'
+application.register('maskphone', MaskphoneController)
+
+import OrderEquipamentController from './order_equipament_controller'
+application.register('order-equipament', OrderEquipamentController)
+
+import PaymentController from './payment_controller'
+application.register('payment', PaymentController)
+
+import RentalController from './rental_controller'
+application.register('rental', RentalController)
+
+import DropDownController from './drop_down_controller'
+application.register('dropdown', DropDownController)

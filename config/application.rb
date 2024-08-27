@@ -21,22 +21,31 @@ Bundler.require(*Rails.groups)
 module EasyRent
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 7.1
+    config.load_defaults(7.1)
 
     # Please, add to the `ignore` list any other `lib` subdirectories that do
     # not contain `.rb` files, or that should not be reloaded or eager loaded.
     # Common ones are `templates`, `generators`, or `middleware`, for example.
-    config.autoload_lib(ignore: %w(assets tasks))
+    config.autoload_lib(ignore: ["assets", "tasks"])
 
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
     # in config/environments, which are processed later.
     #
+    config.i18n.default_locale = :'pt-BR'
+    config.time_zone = 'Brasilia'
+    config.active_record.default_timezone = :local
+
+    # Fallback to English if translation is missing in Portuguese
+    config.i18n.fallbacks = [I18n.default_locale]
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    # Action Mailer
+    config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   end
 end

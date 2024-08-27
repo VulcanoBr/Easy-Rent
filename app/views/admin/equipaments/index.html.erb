@@ -1,0 +1,63 @@
+<div class="container-fluid">
+  <div class="d-flex align-items-center mb-3">
+    <h3 class="flex-grow-1 flex-nowrap">Lista de Equipamentos</h3>
+    <div class="input-group ms-3" style="max-width: 550px;">
+      <%= form_with url: admin_equipaments_path, method: :get, local: true, class: "d-flex w-100" do %>
+        <%= text_field_tag :search, nil, class: "form-control input-sm", placeholder: "Pesquisar Equipamento(s)...", aria_label: "Pesquisar" %>
+        <%= button_tag(type: 'submit', class: "btn btn-success ms-2", title: "Pesquisar") do %>
+          <%= image_tag "icons/gray/lupa.svg", alt: "Pesquisar" %>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="list-actions">
+      <% if policy(Equipament).create? %>
+        <%= link_to "Novo", new_admin_equipament_path, class: "ms-3 btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <% if @pagy.count > 0 %>
+      <div class="col-md-12 d-flex justify-content-center">
+        <%= pagy_bootstrap_nav(@pagy).html_safe%>
+      </div>
+    <% end %>
+  </div>
+  <section>
+    <div class="row mt-3">
+      <div class="col">
+        <table class="table table-bordered table-striped ">
+          <thead class="thead-dark">
+            <tr>
+              <th class="bg-black text-white" scope="col">Nome</th>
+              <th class="bg-black text-white" scope="col">Série</th>
+              <th class="bg-black text-white" scope="col">Descrição</th>
+              <th class="bg-black text-white" scope="col">R$ Diária</th>
+              <th class="bg-black text-white" scope="col">Status</th>
+              <th class="bg-black text-white" scope="col">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Exemplo de equipamento cadastrado -->
+            <% @equipaments.each do |equipament| %>
+              <tr>
+                <td><%= equipament.name %></td>
+                <td><%= equipament.serial_number %></td>
+                <td><%= link_to truncate(equipament.description.to_plain_text, length: 60, omission: "..."), admin_equipament_path(equipament) %></td>
+                <td><%= number_to_currency(equipament.rent_value, unit: "R$ ", separator: ",", delimiter: ".") %></td>
+                <td><%= equipament.status %></td>
+                <td class="d-flex justify-content-between">
+                  <%= link_to edit_admin_equipament_path(equipament), class: "text-black-500 ms-2 hover:underline", title: "Editar", alt: "Editar" do %>
+                    <%= image_tag "icons/gray/edit.svg", alt: "Editar" %>
+                  <% end %>
+                  <%= link_to admin_equipament_path(equipament), method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Tem certeza?' }, class: "text-red-500 ms-2 hover:underline", title: "Excluir", alt: "Excluir" do %>
+                    <%= image_tag "icons/gray/close.svg", alt: "Excluir" %>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</div>

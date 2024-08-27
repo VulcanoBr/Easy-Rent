@@ -1,0 +1,55 @@
+<div class="container-fluid">
+  <div class="d-flex align-items-center justify-content-between mb-3">
+    <h3 class="flex-grow-1 flex-nowrap">Equipamentos para/em Manutenção</h3>
+    <div class="input-group ms-3" style="max-width: 550px;">
+      <%= form_with url: admin_maintenances_path, method: :get, local: true, class: "d-flex w-100" do %>
+        <%= text_field_tag :search, nil, class: "form-control input-sm", placeholder: "Pesquisar equipamento(s)...", aria_label: "Pesquisar" %>
+        <%= button_tag(type: 'submit', class: "btn btn-success ms-2", title: "Pesquisar") do %>
+          <%= image_tag "icons/gray/lupa.svg", alt: "Pesquisar" %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <% if @pagy.count > 0 %>
+      <div class="col-md-12 d-flex justify-content-center">
+        <%= pagy_bootstrap_nav(@pagy).html_safe%>
+      </div>
+    <% end %>
+  </div>
+  <div class="row mt-3">
+    <div class="col">
+      <table class="table table-bordered table-striped table-responsive">
+        <thead class="thead-dark">
+          <tr>
+            <th class="bg-black text-white" scope="col">Nome</th>
+            <th class="bg-black text-white" scope="col">Série</th>
+            <th class="bg-black text-white" scope="col">Descrição</th>
+            <th class="bg-black text-white" scope="col">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @maintenances.each do |equipament| %>
+            <tr>
+              <td><%= equipament.name %></td>
+              <td><%= equipament.serial_number %></td>
+              <td><%= link_to truncate(equipament.description.to_plain_text, length: 50, omission: "..."), 
+                        admin_equipament_path(equipament) %></td>
+              <td class="d-flex justify-content-between">
+                <% if equipament.status == "available" %>
+                  <%= link_to "Manutenção", new_admin_maintenance_path(id: equipament.id), 
+                        class: "text-white ms-2 btn btn-danger", title: "New" %>
+                <% end %>
+                <% if equipament.status == "maintenance" %>
+                  <%= link_to "Finalizar", edit_admin_maintenance_path(equipament), 
+                        class: "text-white ms-2 btn btn-success", title: "edit" %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+</div>

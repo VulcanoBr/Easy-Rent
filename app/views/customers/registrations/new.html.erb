@@ -1,0 +1,63 @@
+<section class="d-flex justify-content-center align-items-center mt-4" style="min-height: 68vh;">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-9 mb-4">
+        <div class="card">
+          <div class="card-header bg-primary text-white text-center">
+            <h4>Cadastro</h4>
+          </div>
+          <div class="card-body mb-3">
+            <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+              <div class="form-inputs">
+                <div class="row">
+                  <div class="col-12 col-md-6 mb-3">
+                    <%= f.input :email,
+                              required: true,
+                              autofocus: true,
+                              input_html: { autocomplete: "email", class: "form-control", placeholder: "Email" } %>
+                  </div>
+                  <div class="col-12 col-md-6 mb-3">
+                    <%= f.input :name, required: true, class: "form-control", placeholder: "Nome Completo" %>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12 col-md-4 mb-3">
+                    <%= f.input :dob, max: Date.today, html5: true, class: "form-control", placeholder: "Data de Nascimento" %>
+                  </div>
+                  <div class="col-12 col-md-4 mb-3" data-controller="maskcpfcnpj">
+                    <%= f.input :identification, required: true, input_html: { class: "form-control", placeholder: "CPF / CNPJ",
+                        maxlength: "18", "data-maskcpfcnpj-target": "inputCpfCnpj", "data-action": "keyup->maskcpfcnpj#addMaskToCpfCnpjFields" }%>
+                  </div>
+                  <div class="col-12 col-md-4 mb-3" data-controller="maskphone">
+                    <%= f.input :mobile_phone, required: true, input_html: { class: "form-control", placeholder: "Telefone Celular",
+                        maxlength: "15", "data-maskphone-target": "inputPhone", "data-action": "keyup->maskphone#addMaskToPhoneFields" }%>
+                  </div>
+                </div>
+                <div class="row">
+                  <%= f.input :address, required: true, class: "form-control", placeholder: "Endereço" %>
+                </div>
+                <div class="row">
+                  <div class="col-12 col-md-6 mb-3">
+                    <%= f.input :password,
+                                required: false,
+                                hint: ("#{@minimum_password_length} caracteres mínimo" if @minimum_password_length),
+                                input_html: { autocomplete: "new-password", class: "form-control", placeholder: "Senha" } %>
+                  </div>
+                  <div class="col-12 col-md-6 mb-3">
+                    <%= f.input :password_confirmation,
+                                required: true,
+                                input_html: { autocomplete: "new-password", class: "form-control", placeholder: "Confirmação de Senha" } %>
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer d-flex justify-content-between">
+                <%= link_to "Cancelar", root_path, class: "btn btn-secondary" %>
+                <%= f.button :button, "Cadastrar", class: "btn btn-primary" %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,127 @@
+# inherit_gem:
+# rubocop-shopify: rubocop.yml
+
+# Extendendo as configurações do RuboCop com as gems adicionais
+require:
+  # - rubocop-performance
+  - rubocop-rails
+  #  - rubocop-rspec
+  #  - rubocop-rspec_rails
+  #  - rubocop-factory_bot
+  #  - rubocop-faker
+
+AllCops:
+  NewCops: enable
+  SuggestExtensions: false
+  Exclude:
+    - 'bin/**/*'
+    - 'db/**/*'
+    - 'node_modules/**/*'
+    - 'public/**/*'
+    - 'tmp/**/*'
+    - 'vendor/**/*'
+    - 'log/**/*'
+
+# Configurações específicas para rubocop-performance
+#Performance:
+#  Enabled: true
+
+# Configurações específicas para rubocop-rails
+Rails:
+  Enabled: true
+  AutoCorrect:
+    Corrections:
+      - AddMissingSpaceBeforeOrAfterSemicolon
+      - AlignHashKeys
+      - AlignHashValues
+      - ConsistentClosingBraceLocation
+      - ConsistentOpeningBraceLocation
+      - ConsistentParenthesesIndentation
+      - EmptyLinesAroundClassAndModuleDefinition
+      - IndentArray
+      - IndentHash
+      - IndentSpaces
+      - Layout/AlignAttributes
+      - Layout/AlignParameters
+      - Layout/ClosingBraceLocation
+      - Layout/HashBraceLocation
+      - Layout/Indentation
+      - Layout/LineLength
+      - Layout/SpaceAroundOperators
+      - Layout/TrailingComma
+      - NewlineBeforeDotAndComma
+      - SpaceAroundBlockComments
+      - SpaceBeforeComma
+      - SpaceInsideParens
+
+# Configurações específicas para rubocop-rspec
+#RSpec:
+#  Enabled: true
+
+# Configurações específicas para rubocop-rspec_rails
+#RSpecRails:
+#  Enabled: true
+
+# Configurações específicas para rubocop-factory_bot
+#FactoryBot:
+#  Enabled: true
+
+# Configurações específicas para rubocop-faker
+#Faker:
+#  Enabled: true
+
+# Outras configurações personalizadas do RuboCop
+
+Rails/HasManyOrHasOneDependent:
+  Enabled: false
+
+Rails/I18nLocaleTexts:
+  Enabled: false
+
+Rails/SkipsModelValidations:
+  Exclude:
+    - 'db/migrate/**/*'
+
+Rails/HttpPositionalArguments:
+  Exclude:
+    - 'test/**/*'
+
+# Desativa a regra de documentação para arquivos específicos
+Style/Documentation:
+  Enabled: false
+  Exclude:
+    - 'app/helpers/application_helper.rb'
+    - 'app/mailers/application_mailer.rb'
+    - 'app/models/application_record.rb'
+
+Layout/LineLength:
+  Max: 120 # Define o máximo de caracteres por linha.
+  AllowedPatterns: ['\A\s*#'] # Ignora linhas que começam com um comentário.
+
+Style/StringLiterals:
+  Enabled: true
+  EnforcedStyle: double_quotes
+
+Style/StringLiteralsInInterpolation:
+  Enabled: true
+  EnforcedStyle: double_quotes
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/RaiseArgs:
+  Enabled: false
+
+Metrics/MethodLength:
+  Max: 30
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/*'
+  Max: 30
+
+Metrics/ClassLength:
+  Max: 100
+
+Naming/VariableName:
+  AllowedPatterns: ['^_']

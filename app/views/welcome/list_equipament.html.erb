@@ -1,0 +1,47 @@
+<!-- Seção de Pesquisa -->
+<section class="container mt-3 mb-5">
+  <div class="row mb-4">
+    <div class="col-md-8 mx-auto">
+      <h3 class="text-center mb-3">Lista de Equipamentos</h3>
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="input-group me-5 mb-3">
+          <%= form_with url: list_equipament_path, method: :get, local: true, class: "d-flex w-100" do %>
+            <%= text_field_tag :search, nil, class: "form-control", placeholder: "Pesquisar Equipamento(s)...", aria_label: "Pesquisar" %>
+            <%= button_tag(type: 'submit', class: "btn btn-success ms-3", title: "Pesquisar", alt: "pesquisar") do %>
+              <%= image_tag "icons/gray/lupa.svg" %>
+            <% end %>
+          <% end %>
+        </div>
+        <% if @pagy.count > 0 %>
+          <div class="ms-4">
+            <%= pagy_bootstrap_nav(@pagy).html_safe %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <!-- Lista de Equipamentos -->
+  <div class="row">
+    <% @equipaments.each do |equipament| %>
+      <div class="col-md-4 mb-4">
+        <div class="d-flex align-items-center">
+          <%= image_tag(equipament.image.variant(:thumb), class: "img-fluid img-thumbnail me-3", style: "max-width: 200px; height: auto;", alt: "Imagem do Equipamento") %>
+          <div>
+            <h5 class="card-title"><%= link_to equipament.name, details_equipament_path(equipament) %></h5>
+            <p class="card-text">Diária: <%= number_to_currency(equipament.rent_value, unit: "R$ ", separator: ",", delimiter: ".") %></p>
+            <p class="card-text">Status: <%= equipament.status %></p>
+            <% if equipament.status == "available" %>
+              <a href="<%= new_rental_path(id: equipament.id) %>" class="btn btn-primary"><i class="fas fa-shopping-cart me-2"></i> Alugar</a>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <!-- Paginação -->
+  <div class="row">
+    <div class="col-md-12 d-flex justify-content-center">
+      <%= pagy_bootstrap_nav(@pagy).html_safe%>
+    </div>
+  </div>
+</section>

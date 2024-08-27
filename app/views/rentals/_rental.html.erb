@@ -1,0 +1,67 @@
+<section class="container mt-3" id="<%= dom_id order %>">
+  <div class="row justify-content-center">
+    <% flash.each do |key, value| %>
+      <div data-controller="flash-message" data-action="click->flash-message#removeMessage" id="flash-message" class="flash <%= key %> alert alert-success bold text-black" data-flash-message-target="message"><%= value %></div>
+    <% end %>
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header bg-primary text-white text-center">
+          <h4>Detalhes do Aluguel</h4>
+        </div>
+        <div class="card-body">
+          <h5>Detalhes da Ordem</h5>
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <p><strong>Código da Ordem:</strong> <%= order&.order_code %></p>
+            </div>
+            <div class="col-md-6">
+              <p><strong>Data de Início:</strong> <%= order&.period_start.strftime("%d/%m/%Y") %></p>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <p><strong>Data de Término:</strong> <%= order&.period_end.strftime("%d/%m/%Y") %></p>
+            </div>
+            <div class="col-md-6">
+              <p><strong>Valor Total do Aluguel:</strong> <%= number_to_currency(order&.tot_rent_value, unit: "R$ ", separator: ",", delimiter: ".") %></p>
+            </div>
+          </div>
+          <h5>Detalhes do Pagamento</h5>
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <p><strong>Método de Pagamento:</strong> <%= order&.payment_method.capitalize %></p>
+            </div>
+            <div class="col-md-6">
+              <p><strong>Valor pago:</strong> <%= number_to_currency(order&.tot_rent_value, unit: "R$ ", separator: ",", delimiter: ".") %></p>
+            </div>
+          </div>
+          <% if order.payment_method == 'cartao' %>
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <p><strong>Numero de parcelas:</strong> <%= order&.installments %></p>
+              </div>
+              <div class="col-md-6">
+                <p><strong>Valor da parcela:</strong> <%= number_to_currency((order&.tot_rent_value / order&.installments) , unit: "R$ ", separator: ",", delimiter: ".") %></p>
+              </div>
+            </div>
+          <% elsif order.payment_method == 'pix' %>
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <p><strong>Código PIX:</strong> <%= order&.pix_code %></p>
+              </div>
+            </div>
+          <% elsif order.payment_method == 'boleto' %>
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <p><strong>Código de Barras do Boleto:</strong> <%= order&.ticket_barcode %></p>
+              </div>
+            </div>
+          <% end %>
+        </div>
+        <div class="card-footer d-flex justify-content-between">
+          <%= link_to 'Continuar', list_equipament_path(order&.equipament_id), class: 'btn btn-secondary' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

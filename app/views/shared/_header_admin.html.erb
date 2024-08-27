@@ -1,0 +1,51 @@
+<header class="bg-dark text-white p-3 fixed-top">
+  <div class="container-fluid d-flex justify-content-between align-items-center">
+    <div class="d-flex align-items-center">
+      <%= image_tag('svg/engrenagem.svg', alt: 'logo equiporent', style: "width: 70%; height: auto;") %>
+    </div>
+    <nav class="d-flex align-items-center">
+      <ul class="nav">
+        <li class="nav-item"><%= link_to 'Home', admin_dashboard_path, class: "nav-link text-white" %></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-white" href="#" id="equipamentosDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="true">
+            Equipamentos
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="equipamentosDropdown">
+            <li><%= link_to 'Cadastro', admin_equipaments_path, class: "dropdown-item" %></li>
+            <li><%= link_to 'Manutenção', admin_maintenances_path, class: "dropdown-item" %></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-white" href="#" id="clientesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="true">
+            Clientes
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="clientesDropdown">
+            <li><%= link_to 'Todos Clientes', admin_customers_path, class: "dropdown-item" %></li>
+            <li><%= link_to 'Adicionar Cliente', new_admin_customer_path, class: "dropdown-item" %></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-white" href="#" id="pedidosDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="true">
+            Pedidos
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="pedidosDropdown">
+            <li><%= link_to 'Todos Pedidos', admin_orders_path, class: "dropdown-item"  %></li>
+            <li><%= link_to 'Adicionar Pedido', new_admin_order_path, class: "dropdown-item"  %></li>
+            <li><%= link_to 'Finalizar', put_fineshed_order_admin_orders_path, class: "dropdown-item"  %></li>
+            <li><%= link_to 'Cancelar', put_canceled_order_admin_orders_path, class: "dropdown-item" %></li>
+            <li><%= link_to 'Pagamento', put_paid_order_admin_orders_path, class: "dropdown-item"  %></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+    <% if admin_user_signed_in? %>
+      <div data-turbo="true">
+        <%= link_to destroy_admin_user_session_path, data: { "turbo-method": :delete }, class: "btn btn-danger" do %>
+          Logout
+        <% end %>
+      </div>
+    <% else %>
+      <%= link_to 'Log in', new_admin_user_session_path, class: "btn btn-outline-light" %>
+    <% end %>
+  </div>
+</header>

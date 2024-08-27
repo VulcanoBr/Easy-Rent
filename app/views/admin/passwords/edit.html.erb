@@ -1,0 +1,59 @@
+<section class="d-flex justify-content-center align-items-center" style="min-height: 68vh;">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header text-center">
+            <h4>Change your password</h4>
+          </div>
+          <% flash.each do |key, value| %>
+            <div data-controller="flash-message" data-action="click->flash-message#removeMessage" id="flash-message" class="flash <%= key %> alert alert-danger bold text-black" data-flash-message-target="message"><%= value %></div>
+          <% end %>
+          <div class="card-body">
+            <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+              <%= f.error_notification %>
+              <%= f.input :reset_password_token, as: :hidden %>
+              <%= f.full_error :reset_password_token %>
+              <div class="mb-3">
+                <%= f.input :password,
+                            label: "Nova senha",
+                            required: true,
+                            autofocus: true,
+                            hint: ("#{@minimum_password_length} caracteres mínimo" if @minimum_password_length),
+                            input_html: { autocomplete: "new-password", class: "form-control", placeholder: "Nova senha" } %>
+              </div>
+              <div class="mb-3">
+                <%= f.input :password_confirmation,
+                            label: "Confirme sua nova senha",
+                            required: true,
+                            input_html: { autocomplete: "new-password", class: "form-control", placeholder: "Confirme sua nova senha" } %>
+              </div>
+              <div class="d-grid gap-2">
+                <%= f.button :submit, "Alterar minha senha", class: "btn btn-primary btn-block" %>
+              </div>
+            <% end %>
+            <div class="mt-3 text-center">
+              <% if controller_name != 'sessions' %>
+                <%= link_to "Log in", new_admin_user_session_path, class: "text-decoration-none" %><br />
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    var flashMessage = document.getElementById('flash-message');
+    if (flashMessage) {
+      setTimeout(function() {
+        flashMessage.style.display = 'none';
+      }, 5000); // Remove the flash message after 5 seconds
+
+      document.addEventListener('click', function() {
+        flashMessage.style.display = 'none';
+      });
+    }
+  });
+</script>

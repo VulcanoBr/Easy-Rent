@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout e Pagamento Online</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+      <a class="navbar-brand" href="#">Aluguel de Equipamentos</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Catálogo</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Histórico de Aluguéis</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Perfil</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Suporte</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Login</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero text-center">
+    <div class="container">
+      <h1>Checkout e Pagamento Online</h1>
+      <p>Finalize seu pedido e escolha a forma de pagamento.</p>
+    </div>
+  </section>
+
+  <!-- Processo de Checkout -->
+  <section class="py-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <!-- Resumo do Pedido -->
+          <div class="card mb-3">
+            <div class="card-body">
+              <h5 class="card-title">Resumo do Pedido</h5>
+              <p class="card-text">Equipamento: <strong>Câmera DSLR</strong></p>
+              <p class="card-text">Período: <strong>01/09/2024 - 05/09/2024</strong></p>
+              <p class="card-text">Total: <strong>R$ 600,00</strong></p>
+            </div>
+          </div>
+
+          <!-- Formulário de Pagamento -->
+          <form>
+            <!-- Métodos de Pagamento -->
+            <h5>Método de Pagamento</h5>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="paymentMethod" id="creditCard" checked>
+              <label class="form-check-label" for="creditCard">
+                Cartão de Crédito
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="paymentMethod" id="pix">
+              <label class="form-check-label" for="pix">
+                PIX
+              </label>
+            </div>
+            <div class="form-check mb-4">
+              <input class="form-check-input" type="radio" name="paymentMethod" id="boleto">
+              <label class="form-check-label" for="boleto">
+                Boleto Bancário
+              </label>
+            </div>
+
+            <!-- Detalhes do Pagamento (Cartão de Crédito) -->
+            <div id="creditCardDetails">
+              <div class="mb-3">
+                <label for="cardNumber" class="form-label">Número do Cartão</label>
+                <input type="text" class="form-control" id="cardNumber" placeholder="0000 0000 0000 0000">
+              </div>
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="expirationDate" class="form-label">Data de Expiração</label>
+                  <input type="text" class="form-control" id="expirationDate" placeholder="MM/AA">
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="cvv" class="form-label">CVV</label>
+                  <input type="text" class="form-control" id="cvv" placeholder="123">
+                </div>
+              </div>
+            </div>
+
+            <!-- Detalhes do Pagamento (PIX) -->
+            <div id="pixDetails" class="d-none">
+              <p>Use o código abaixo para realizar o pagamento via PIX:</p>
+              <p class="bg-light p-3 text-center">
+                00020126580014BR.GOV.BCB.PIX013600000000000520400005303986540410005802BR5910Nome Fantasia6009SAO
+                PAULO62070503***6304B5A0</p>
+            </div>
+
+            <!-- Detalhes do Pagamento (Boleto Bancário) -->
+            <div id="boletoDetails" class="d-none">
+              <p>O boleto será gerado após a confirmação do pedido. Use o código abaixo para realizar o pagamento:</p>
+              <p class="bg-light p-3 text-center">03399.12345 67890.123456 78901.234567 8 12345678901234</p>
+            </div>
+
+            <!-- Botão de Finalizar Pedido -->
+            <button type="submit" class="btn btn-primary w-100">Finalizar Pedido</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer text-center bg-primary text-white py-3">
+    <div class="container">
+      <p>&copy; 2024 Aluguel de Equipamentos. Todos os direitos reservados.</p>
+      <ul class="list-inline">
+        <li class="list-inline-item"><a href="#" class="text-white">Política de Privacidade</a></li>
+        <li class="list-inline-item"><a href="#" class="text-white">Termos de Uso</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Script para alternar entre métodos de pagamento -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const paymentMethods = document.querySelectorAll('input[name="paymentMethod"]');
+      const creditCardDetails = document.getElementById('creditCardDetails');
+      const pixDetails = document.getElementById('pixDetails');
+      const boletoDetails = document.getElementById('boletoDetails');
+
+      paymentMethods.forEach(function (method) {
+        method.addEventListener('change', function () {
+          if (method.id === 'creditCard') {
+            creditCardDetails.classList.remove('d-none');
+            pixDetails.classList.add('d-none');
+            boletoDetails.classList.add('d-none');
+          } else if (method.id === 'pix') {
+            creditCardDetails.classList.add('d-none');
+            pixDetails.classList.remove('d-none');
+            boletoDetails.classList.add('d-none');
+          } else if (method.id === 'boleto') {
+            creditCardDetails.classList.add('d-none');
+            pixDetails.classList.add('d-none');
+            boletoDetails.classList.remove('d-none');
+          }
+        });
+      });
+    });
+  </script>
+</body>
+
+</html>

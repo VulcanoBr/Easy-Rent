@@ -1,0 +1,66 @@
+<div class="container" id="<%= dom_id order %>">
+  <% flash.each do |key, value| %>
+    <div data-controller="flash-message" data-action="click->flash-message#removeMessage" id="flash-message" class="flash <%= key %> alert alert-success bold text-black" data-flash-message-target="message"><%= value %></div>
+  <% end %>
+  <div class="mb-4 card card-primary mx-auto" style="max-width: 800px;">
+    <div class="card-header bg-primary text-white text-center">
+      <h4>Detalhes do Pedido</h4>
+    </div>
+    <div class="card-body">
+      <div class="mb-2">
+        <span class="flex-grow-1 fw-bold">Codigo Pedido: </span>
+        <span class="mx-3"> <%= order&.order_code %> </span>
+      </div>
+      <div class="mb-2">
+        <span class="flex-grow-1 fw-bold">Cliente: </span>
+        <span class="mx-3"> <%= order.customer.name %> </span>
+      </div>
+      <div class="mb-2">
+        <span class="flex-grow-1 fw-bold">Equipamento: </span>
+        <span class="mx-3"> <%= order.equipament.name %> </span>
+      </div>
+      <div class="mb-2">
+        <span class="flex-grow-1 fw-bold">Data Início: </span>
+        <span class="mx-3"> <%= order&.period_start.strftime('%d/%m/%Y') %> </span>
+      </div>
+      <div class="mb-2">
+        <span class="flex-grow-1 fw-bold">Data Fim: </span>
+        <span class="mx-3"> <%= order&.period_end.strftime('%d/%m/%Y') %> </span>
+      </div>
+      <div class="mb-2">
+        <span class="flex-grow-1 fw-bold">Status: </span>
+        <span class="mx-3"> <%= order&.status %> </span>
+      </div>
+      <div class="mb-2">
+        <span class="flex-grow-1 fw-bold">Valor Aluguel: </span>
+        <span class="mx-3"> <%= number_to_currency(order.tot_rent_value, unit: "R$ ", separator: ",", delimiter: ".") %> </span>
+      </div>
+      <h5>Detalhes do Pagamento</h5>
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <p><strong>Método de Pagamento:</strong> <%= order&.payment_method.capitalize %></p>
+        </div>
+        <div class="col-md-6">
+          <p><strong>Valor a pagar:</strong> <%= number_to_currency(order&.tot_rent_value, unit: "R$ ", separator: ",", delimiter: ".") %></p>
+        </div>
+        <% if order.payment_method == 'pix' %>
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <p><strong>Código PIX:</strong> <%= order&.pix_code %></p>
+            </div>
+          </div>
+        <% elsif order.payment_method == 'boleto' %>
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <p><strong>Código de Barras do Boleto:</strong> <%= order&.ticket_barcode %></p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="card-footer">
+      <a href="<%= edit_admin_order_path(order) %>" class="btn btn-primary">Editar</a>
+      <a href="<%= admin_orders_path %>" class="btn btn-secondary">Ver Lista</a>
+    </div>
+  </div>
+</div>

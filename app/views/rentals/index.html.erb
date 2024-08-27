@@ -1,0 +1,59 @@
+<div class="container-fluid">
+  <div class="d-flex align-items-center">
+    <h3 class="flex-grow-1">Lista de Pedidos </h3>
+    <div class="input-group ms-3" style="width: 550px;">
+      <%= form_with url: orders_path, method: :get, local: true, class: "d-flex w-100" do %>
+        <%= text_field_tag :search, nil, class: "form-control input-sm", placeholder: "Pesquisar Pedido(s)...", aria_label: "Pesquisar" %>
+        <%= button_tag(type: 'submit', class: "btn btn-success me-5 text-black-500 hover:underline", title: "Pesquisar", alt: "pesquisar") do %>
+          <%= image_tag "icons/gray/lupa.svg" %>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="list-actions">
+      <%= link_to "Novo", new_order_path, class:"ms-3 btn btn-primary" %>
+    </div>
+  </div>
+  <section class="">
+    <div class="row">
+      <div class="col">
+        <table class="table table-bordered table-striped">
+          <thead class="thead-dark">
+            <tr>
+              <th class="bg-black text-white" scope="col">Codigo pedido</th>
+              <th class="bg-black text-white" scope="col">Cliente</th>
+              <th class="bg-black text-white" scope="col">Equipamento</th>
+              <th class="bg-black text-white" scope="col">Inicio</th>
+              <th class="bg-black text-white" scope="col">Fim</th>
+              <th class="bg-black text-white" scope="col">R$ Aluguel</th>
+              <th class="bg-black text-white" scope="col">Status</th>
+              <th class="bg-black text-white" scope="col">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Exemplo de cliente cadastrado -->
+            <% @orders.each do |order| %>
+              <tr>
+                <td><%= order&.order_code %></td>
+                <td><%= order.customer.name %></td>
+                <td><%= order.equipament.name %></td>
+                <td><%= order&.period_start.strftime('%d/%m/%Y') %></td>
+                <td><%= order&.period_end.strftime('%d/%m/%Y') %></td>
+                <td><%= number_to_currency(order.tot_rent_value, unit: "R$ ", separator: ",", delimiter: ".") %></td>
+                <td><%= order.status %></td>
+                <td class="d-flex justify-content-between">
+                  <%= link_to edit_order_path(order), title: "Edit", alt: "edit"  do %>
+                    <%= image_tag "icons/gray/edit.svg" %>
+                  <% end %>
+                  <%= link_to order, method: :delete, data: {
+                        turbo_method: :delete, turbo_confirm: 'Are you sure?' }, 
+                        class: "text-red-500 hover:underline", title: "Delete", alt: "delete"   do  %>
+                    <%= image_tag "icons/gray/close.svg" %>
+                  <% end %>
+                </td>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </div>

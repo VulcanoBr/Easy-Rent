@@ -1,0 +1,50 @@
+<section class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-md-8 mb-4">
+      <div class="card mb-4">
+        <div class="card-header bg-primary text-white text-center">
+          <h4>Cadastro de Equipamentos</h4>
+        </div>
+        <div class="card-body">
+          <%= simple_form_for [:admin, @equipament] do |form| %>
+            <div class="row mb-3">
+              <div class="col-12 col-md-8">
+                <%= form.input :name %>
+              </div>
+              <div class="col-12 col-md-4">
+                <%= form.input :serial_number %>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-12 col-md-6">
+                <%= form.input :status, input_html: { class: 'form-control', readonly: true } %>
+              </div>
+              <div class="col-12 col-md-6">
+                <%= form.input :rent_value %>
+              </div>
+            </div>
+            <div class="mb-3">
+              <%= form.label :image, "Upload de Imagem" %>
+              <%= form.file_field :image, class: "form-control" %>
+              <% if @equipament.image.attached? %>
+                <div class="mt-2">
+                  <%= image_tag @equipament.image, class: "img-thumbnail", style: "max-width: 100px; height: auto;" %>
+                  <%= form.check_box :remove_image, {}, '1', '0' %>
+                  <%= form.label :remove_image, "Remover Imagem" %>
+                </div>
+              <% end %>
+            </div>
+            <div class="mb-3">
+              <%= form.label :description %>
+              <%= form.rich_text_area :description, class: "form-control" %>
+            </div>
+            <div class="card-footer d-flex justify-content-between">
+              <%= link_to "Voltar", admin_equipaments_path, class: "btn btn-secondary" %>
+              <%= form.button :submit, class: "btn btn-primary" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,34 @@
+<!-- Seção de Informações -->
+<section class="container py-5">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Detalhes do Equipamento</h4>
+          <h5 class="card-subtitle mb-3"><%= @equipament.name %></h5>
+          <div class="mb-2">
+            <span class="flex-grow-1 fw-bold ml-4">Descrição: </span>
+            <span class="mx-3"><%= raw @equipament.description.to_s %></span>
+          </div>
+          <div class="mb-2">
+            <span class="fw-bold">Diária: </span>
+            <span class="mx-3"><%= number_to_currency(@equipament.rent_value, unit: "R$ ", separator: ",", delimiter: ".") %></span>
+          </div>
+        </div>
+        <div class="card-footer d-flex justify-content-between align-items-center">
+          <p class="card-text mb-0 fw-bold ml-4">Status: <%= @equipament.status %></p>
+          <% if @equipament.status == "available" %>
+            <a href="<%= new_rental_path(id: @equipament.id) %>" class="btn btn-primary"><i class="fas fa-shopping-cart me-2"></i> Alugar</a>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="text-center">
+        <%= image_tag @equipament.image.variant(:medium), 
+              class: "img-fluid",  alt: "Imagem do Equipamento" 
+               %>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema de Busca e Filtros + Calendário de Disponibilidade</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+      <a class="navbar-brand" href="#">Aluguel de Equipamentos</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Catálogo</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Histórico de Aluguéis</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Perfil</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Suporte</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Login</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero text-center">
+    <div class="container">
+      <h1>Encontre o Equipamento Ideal</h1>
+      <p>Use o sistema de busca e filtros para encontrar equipamentos e verificar a disponibilidade.</p>
+    </div>
+  </section>
+
+  <!-- Seção de Busca e Filtros -->
+  <section class="py-5 bg-light">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-10">
+          <form class="mb-4">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Buscar por equipamento"
+                aria-label="Buscar por equipamento">
+              <button class="btn btn-primary" type="button">Buscar</button>
+            </div>
+          </form>
+
+          <!-- Filtros -->
+          <div class="row mb-5">
+            <div class="col-md-4 mb-3">
+              <label for="category" class="form-label">Categoria</label>
+              <select class="form-select" id="category">
+                <option selected>Selecione uma categoria</option>
+                <option value="1">Câmeras</option>
+                <option value="2">Drones</option>
+                <option value="3">Iluminação</option>
+                <!-- Adicione mais categorias conforme necessário -->
+              </select>
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="price-range" class="form-label">Faixa de Preço</label>
+              <select class="form-select" id="price-range">
+                <option selected>Selecione uma faixa de preço</option>
+                <option value="1">Até R$ 100</option>
+                <option value="2">R$ 100 - R$ 500</option>
+                <option value="3">Acima de R$ 500</option>
+              </select>
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="availability" class="form-label">Disponibilidade</label>
+              <select class="form-select" id="availability">
+                <option selected>Selecione a disponibilidade</option>
+                <option value="1">Disponível agora</option>
+                <option value="2">Em breve</option>
+                <option value="3">Indisponível</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Resultados da Busca -->
+          <div class="row">
+            <div class="col-md-4 mb-4">
+              <div class="card">
+                <img src="camera.jpg" class="card-img-top" alt="Câmera DSLR">
+                <div class="card-body">
+                  <h5 class="card-title">Câmera DSLR</h5>
+                  <p class="card-text">R$ 150,00 / dia</p>
+                  <a href="#" class="btn btn-primary">Ver detalhes</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 mb-4">
+              <div class="card">
+                <img src="drone.jpg" class="card-img-top" alt="Drone 4K">
+                <div class="card-body">
+                  <h5 class="card-title">Drone 4K</h5>
+                  <p class="card-text">R$ 200,00 / dia</p>
+                  <a href="#" class="btn btn-primary">Ver detalhes</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 mb-4">
+              <div class="card">
+                <img src="lighting.jpg" class="card-img-top" alt="Iluminação LED">
+                <div class="card-body">
+                  <h5 class="card-title">Iluminação LED</h5>
+                  <p class="card-text">R$ 100,00 / dia</p>
+                  <a href="#" class="btn btn-primary">Ver detalhes</a>
+                </div>
+              </div>
+            </div>
+            <!-- Adicione mais resultados conforme necessário -->
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Seção de Calendário de Disponibilidade -->
+  <section class="py-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-10">
+          <h4>Calendário de Disponibilidade</h4>
+          <p>Selecione uma data para verificar a disponibilidade dos equipamentos.</p>
+
+          <div class="mb-5">
+            <div class="calendar">
+              <div class="input-group">
+                <input type="date" class="form-control" id="availability-date" aria-label="Selecione uma data">
+                <button class="btn btn-primary" type="button">Verificar</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Exemplo de Tabela de Disponibilidade -->
+          <div class="table-responsive">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Equipamento</th>
+                  <th>Disponibilidade</th>
+                  <th>Ação</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Câmera DSLR</td>
+                  <td>Disponível</td>
+                  <td><a href="#" class="btn btn-success btn-sm">Reservar</a></td>
+                </tr>
+                <tr>
+                  <td>Drone 4K</td>
+                  <td>Indisponível</td>
+                  <td><a href="#" class="btn btn-secondary btn-sm disabled">Reservar</a></td>
+                </tr>
+                <tr>
+                  <td>Iluminação LED</td>
+                  <td>Disponível</td>
+                  <td><a href="#" class="btn btn-success btn-sm">Reservar</a></td>
+                </tr>
+                <!-- Adicione mais linhas conforme necessário -->
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer text-center bg-primary text-white py-3">
+    <div class="container">
+      <p>&copy; 2024 Aluguel de Equipamentos. Todos os direitos reservados.</p>
+      <ul class="list-inline">
+        <li class="list-inline-item"><a href="#" class="text-white">Política de Privacidade</a></li>
+        <li class="list-inline-item"><a href="#" class="text-white">Termos de Uso</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

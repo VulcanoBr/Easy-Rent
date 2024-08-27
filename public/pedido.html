@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro de Pedidos - AlugaTudo</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <!-- Cabeçalho -->
+  <header class="bg-dark text-white p-3">
+    <div class="container d-flex justify-content-between align-items-center">
+      <h1>AlugaTudo</h1>
+      <nav>
+        <ul class="nav">
+          <li class="nav-item"><a class="nav-link text-white" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="#">Equipamentos</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="#">Clientes</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="#">Pedidos</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="#">Sobre</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="#">Contato</a></li>
+        </ul>
+      </nav>
+      <button class="btn btn-outline-light">Logout</button>
+    </div>
+  </header>
+
+  <!-- Formulário de Cadastro de Pedidos -->
+  <section class="container py-5">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">
+            <h2>Cadastro de Pedidos</h2>
+          </div>
+          <div class="card-body">
+            <form id="orderForm">
+              <div class="mb-3">
+                <label for="client" class="form-label">Cliente</label>
+                <select class="form-select" id="client" required>
+                  <option selected disabled>Selecione o cliente</option>
+                  <!-- Opções de cliente -->
+                  <option value="1">Cliente 1</option>
+                  <option value="2">Cliente 2</option>
+                  <!-- Repetir para outros clientes -->
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="equipment" class="form-label">Equipamento</label>
+                <select class="form-select" id="equipment" required>
+                  <option selected disabled>Selecione o equipamento</option>
+                  <!-- Opções de equipamento -->
+                  <option value="1">Equipamento 1</option>
+                  <option value="2">Equipamento 2</option>
+                  <!-- Repetir para outros equipamentos -->
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="start_date" class="form-label">Data de Início</label>
+                <input type="date" class="form-control" id="start_date" required>
+              </div>
+              <div class="mb-3">
+                <label for="end_date" class="form-label">Data de Fim</label>
+                <input type="date" class="form-control" id="end_date" required>
+              </div>
+              <div class="mb-3">
+                <label for="status" class="form-label">Status</label>
+                <select class="form-select" id="status" required>
+                  <option value="Pendente">Pendente</option>
+                  <option value="Concluído">Concluído</option>
+                  <option value="Cancelado">Cancelado</option>
+                </select>
+              </div>
+              <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <button type="submit" class="btn btn-primary me-md-2">Incluir</button>
+                <button type="button" class="btn btn-secondary">Alterar</button>
+                <button type="button" class="btn btn-info">Mostrar</button>
+                <button type="button" class="btn btn-danger">Deletar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tabela de Pedidos -->
+  <section class="container py-5">
+    <div class="row">
+      <div class="col">
+        <h2>Lista de Pedidos</h2>
+        <table class="table table-bordered table-striped">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Cliente</th>
+              <th scope="col">Equipamento</th>
+              <th scope="col">Data de Início</th>
+              <th scope="col">Data de Fim</th>
+              <th scope="col">Status</th>
+              <th scope="col">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Exemplo de pedido cadastrado -->
+            <tr>
+              <th scope="row">1</th>
+              <td>Cliente 1</td>
+              <td>Equipamento 1</td>
+              <td>2024-06-05</td>
+              <td>2024-06-10</td>
+              <td>Pendente</td>
+              <td>
+                <button class="btn btn-warning btn-sm">Editar</button>
+                <button class="btn btn-danger btn-sm">Deletar</button>
+              </td>
+            </tr>
+            <!-- Repetir para outros pedidos -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  < <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"></script>
+</body>
+
+</html>

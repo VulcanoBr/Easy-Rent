@@ -1,0 +1,8 @@
+<% @equipaments.each do |equipament| %>
+  <li class="list-group-item" role="option" 
+    data-autocomplete-value="<%= equipament.id %>"
+      data-rent-value="<%= equipament.rent_value %>"
+      id="stimulus-autocomplete-option-<%= equipament.id %>">
+    <%= equipament.name %> 
+  </li>
+<% end %>

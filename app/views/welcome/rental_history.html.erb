@@ -1,0 +1,38 @@
+<section class="container mt-4 mb-5">
+  <div class="row mb-4">
+    <div class="col-md-8 mx-auto">
+      <div class="d-flex justify-content-between ms-3 mb-2">
+        <h3>Equipamentos Alugados</h3>
+        <div class="row">
+          <% if @pagy.count > 0 %>
+            <div class="col-md-12 d-flex justify-content-center">
+              <%= pagy_bootstrap_nav(@pagy).html_safe %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <% @order_history.each do |order| %>
+        <ul class="list-group">
+          <li class="list-group-item">
+            <div class="d-flex justify-content-between border border-black rounded p-1">
+              <div>
+                <div class="d-flex justify-content-between">
+                  <p class="me-4 mb-3">Pedido: <%= order.order_code %></p>
+                  <p class="mb-3"><%= link_to order.equipament.name, details_equipament_path(id: order.equipament_id) %> </p>
+                </div>
+                <div class="d-flex">
+                  <p class="me-5 mb-0">Início: <%= order.period_start.strftime('%d/%m/%Y') %></p>
+                  <p>Fim: <%= order.period_end.strftime('%d/%m/%Y') %> </p>
+                </div>
+              </div>
+              <div class="text-end">
+                <p>Custo: <%= number_to_currency(order.tot_rent_value, unit: "R$ ", separator: ",", delimiter: ".")%></p>
+                <p>Status: <%= order.status %> </p>
+              </div>
+            </div>
+          </li>
+        </ul>
+      <% end %>
+    </div>
+  </div>
+</section>

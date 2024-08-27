@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aluguel de Equipamentos</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    /* Estilos Inline */
+    .navbar {
+      background-color: #007bff;
+    }
+
+    .navbar-brand,
+    .nav-link {
+      color: #fff;
+    }
+
+    .navbar-brand:hover,
+    .nav-link:hover {
+      color: #ddd;
+    }
+
+    .hero {
+      background-color: #f8f9fa;
+      padding: 50px 0;
+    }
+
+    .hero h1 {
+      color: #007bff;
+    }
+
+    .card-img-top {
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .card-title {
+      color: #007bff;
+    }
+
+    .footer {
+      background-color: #007bff;
+      color: #fff;
+      padding: 20px 0;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+      <a class="navbar-brand" href="#">Aluguel de Equipamentos</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Catálogo</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Histórico de Aluguéis</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Perfil</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Suporte</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Login</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero text-center">
+    <div class="container">
+      <h1>Encontre o Equipamento Perfeito para Alugar</h1>
+      <p>Explore nossa vasta gama de equipamentos disponíveis para aluguel.</p>
+      <a href="#" class="btn btn-primary">Ver Catálogo</a>
+    </div>
+  </section>
+
+  <!-- Catálogo de Equipamentos -->
+  <section class="py-5">
+    <div class="container">
+      <h2 class="mb-4">Catálogo de Equipamentos</h2>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="card">
+            <img src="equipamento1.jpg" class="card-img-top" alt="Equipamento 1">
+            <div class="card-body">
+              <h5 class="card-title">Equipamento 1</h5>
+              <p class="card-text">Descrição breve do equipamento 1.</p>
+              <a href="#" class="btn btn-outline-primary">Reservar</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <img src="equipamento2.jpg" class="card-img-top" alt="Equipamento 2">
+            <div class="card-body">
+              <h5 class="card-title">Equipamento 2</h5>
+              <p class="card-text">Descrição breve do equipamento 2.</p>
+              <a href="#" class="btn btn-outline-primary">Reservar</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <img src="equipamento3.jpg" class="card-img-top" alt="Equipamento 3">
+            <div class="card-body">
+              <h5 class="card-title">Equipamento 3</h5>
+              <p class="card-text">Descrição breve do equipamento 3.</p>
+              <a href="#" class="btn btn-outline-primary">Reservar</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Histórico de Aluguéis -->
+  <section class="py-5 bg-light">
+    <div class="container">
+      <h2 class="mb-4">Histórico de Aluguéis</h2>
+      <div class="list-group">
+        <a href="#" class="list-group-item list-group-item-action">
+          <strong>Equipamento 1</strong> - Data de Aluguel: 01/08/2024 - Status: Concluído
+        </a>
+        <a href="#" class="list-group-item list-group-item-action">
+          <strong>Equipamento 2</strong> - Data de Aluguel: 15/07/2024 - Status: Concluído
+        </a>
+        <a href="#" class="list-group-item list-group-item-action">
+          <strong>Equipamento 3</strong> - Data de Aluguel: 22/06/2024 - Status: Concluído
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer text-center">
+    <div class="container">
+      <p>&copy; 2024 Aluguel de Equipamentos. Todos os direitos reservados.</p>
+      <ul class="list-inline">
+        <li class="list-inline-item"><a href="#" class="text-white">Política de Privacidade</a></li>
+        <li class="list-inline-item"><a href="#" class="text-white">Termos de Uso</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

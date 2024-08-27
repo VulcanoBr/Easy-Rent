@@ -1,0 +1,43 @@
+<section class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card mb-4">
+        <div class="card-header bg-primary text-white text-center">
+          <h4>Cadastro de Clientes</h4>
+        </div>
+        <div class="card-body">
+          <%= simple_form_for [:admin, @customer] do |form| %>
+            <div class="row">
+              <div class="col-12 col-md-8 mb-3">
+                <%= form.input :name, input_html: { class: 'form-control' } %>
+              </div>
+              <div class="col-12 col-md-4 mb-3">
+                <%= form.input :dob, max: Date.today, html5: true, input_html: { class: 'form-control' } %>
+              </div>
+            </div>
+            <div class="mb-3">
+              <%= form.input :email, input_html: { class: 'form-control' } %>
+            </div>
+            <div class="row">
+              <div class="col-12 col-md-4 mb-3" data-controller="maskcpfcnpj">
+                <%= form.input :identification, required: true, input_html: { class: "form-control", placeholder: "CPF / CNPJ",
+                    maxlength: "18", "data-maskcpfcnpj-target": "inputCpfCnpj", "data-action": "keyup->maskcpfcnpj#addMaskToCpfCnpjFields" }%>
+              </div>
+              <div class="col-12 col-md-4 mb-3" data-controller="maskphone">
+                <%= form.input :mobile_phone, required: true, input_html: { class: "form-control", placeholder: "Telefone Celular",
+                    maxlength: "15", "data-maskphone-target": "inputPhone", "data-action": "keyup->maskphone#addMaskToPhoneFields" }%>
+              </div>
+            </div>
+            <div class="mb-3">
+              <%= form.input :address, input_html: { class: 'form-control' } %>
+            </div>
+            <div class="card-footer d-flex justify-content-between">
+              <%= link_to "Voltar", admin_customers_path, class: "btn btn-secondary" %>
+              <%= form.button :submit, class: "btn btn-primary" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aluguel de Equipamentos</title>
+  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <header class="bg-gray-800 text-white py-4 px-4">
+    <div class="container mx-auto flex justify-between items-center">
+      <a href="#" class="text-2xl font-bold">Aluguel de Equipamentos</a>
+      <nav class="hidden md:flex items-center">
+        <ul class="flex space-x-4">
+          <li><a href="#" class="hover:bg-gray-700">Menu</a></li>
+          <li><a href="#" class="hover:bg-gray-700">Login</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container mx-auto py-16">
+    <h1 class="text-4xl font-bold text-gray-800 mb-8">Alugue o equipamento ideal para suas necessidades</h1>
+    <p class="text-gray-600">Oferecemos uma ampla variedade de equipamentos para atender às suas necessidades, desde
+      ferramentas de construção até equipamentos de camping.</p>
+
+    <section class="mt-8">
+      <form action="#">
+        <input type="text" class="border border-gray-300 p-2" placeholder="Pesquisar equipamentos...">
+        <button type="submit" class="bg-blue-500 text-white px-4 py-2 hover:bg-blue-600">Pesquisar</button>
+      </form>
+    </section>
+
+    <section class="mt-8 grid grid-cols-3 gap-4">
+      <a href="#" class="bg-gray-200 text-gray-800 hover:bg-gray-300 p-4 rounded-md flex items-center">
+        <i class="fas fa-wrench mr-2"></i>
+        Ferramentas de construção
+      </a>
+      <a href="#" class="bg-gray-200 text-gray-800 hover:bg-gray-300 p-4 rounded-md flex items-center">
+        <i class="fas fa-campground mr-2"></i>
+        Equipamentos de camping
+      </a>
+      <a href="#" class="bg-gray-200 text-gray-800 hover:bg-gray-300 p-4 rounded-md flex items-center">
+        <i class="fas fa-camera mr-2"></i>
+        Equipamentos para fotografia
+      </a>
+    </section>
+  </main>
+
+  <footer class="bg-gray-800 text-white py-4 px-4">
+    <div class="container mx-auto text-center">
+      <p>&copy; 2024 Aluguel de Equipamentos</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/tailwindcss@^2/dist/tailwind.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catálogo de Equipamentos</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+      <a class="navbar-brand" href="#">Aluguel de Equipamentos</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Catálogo</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Histórico de Aluguéis</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Perfil</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Suporte</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Login</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero text-center">
+    <div class="container">
+      <h1>Catálogo de Equipamentos</h1>
+      <p>Explore e alugue os equipamentos que você precisa.</p>
+    </div>
+  </section>
+
+  <!-- Filtros de Busca -->
+  <section class="bg-light py-3">
+    <div class="container">
+      <form class="row g-3">
+        <div class="col-md-4">
+          <input type="text" class="form-control" placeholder="Buscar por nome do equipamento">
+        </div>
+        <div class="col-md-4">
+          <select class="form-select">
+            <option selected>Categoria</option>
+            <option value="1">Câmeras</option>
+            <option value="2">Iluminação</option>
+            <option value="3">Áudio</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <button type="submit" class="btn btn-primary w-100">Buscar</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Catálogo de Equipamentos -->
+  <section class="py-5">
+    <div class="container">
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+        <!-- Item 1 -->
+        <div class="col">
+          <div class="card h-100">
+            <img src="https://via.placeholder.com/350x200" class="card-img-top" alt="Nome do Equipamento">
+            <div class="card-body">
+              <h5 class="card-title">Câmera DSLR</h5>
+              <p class="card-text">Descrição breve do equipamento e suas funcionalidades.</p>
+              <p class="text-muted">R$ 150,00 / dia</p>
+              <button class="btn btn-primary w-100">Alugar</button>
+            </div>
+          </div>
+        </div>
+        <!-- Item 2 -->
+        <div class="col">
+          <div class="card h-100">
+            <img src="https://via.placeholder.com/350x200" class="card-img-top" alt="Nome do Equipamento">
+            <div class="card-body">
+              <h5 class="card-title">Iluminação LED</h5>
+              <p class="card-text">Descrição breve do equipamento e suas funcionalidades.</p>
+              <p class="text-muted">R$ 80,00 / dia</p>
+              <button class="btn btn-primary w-100">Alugar</button>
+            </div>
+          </div>
+        </div>
+        <!-- Item 3 -->
+        <div class="col">
+          <div class="card h-100">
+            <img src="https://via.placeholder.com/350x200" class="card-img-top" alt="Nome do Equipamento">
+            <div class="card-body">
+              <h5 class="card-title">Microfone de Estúdio</h5>
+              <p class="card-text">Descrição breve do equipamento e suas funcionalidades.</p>
+              <p class="text-muted">R$ 50,00 / dia</p>
+              <button class="btn btn-primary w-100">Alugar</button>
+            </div>
+          </div>
+        </div>
+        <!-- Mais Itens... -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer text-center bg-primary text-white py-3">
+    <div class="container">
+      <p>&copy; 2024 Aluguel de Equipamentos. Todos os direitos reservados.</p>
+      <ul class="list-inline">
+        <li class="list-inline-item"><a href="#" class="text-white">Política de Privacidade</a></li>
+        <li class="list-inline-item"><a href="#" class="text-white">Termos de Uso</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

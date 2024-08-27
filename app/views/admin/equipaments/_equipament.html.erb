@@ -1,0 +1,47 @@
+<div class="container" id="<%= dom_id equipament %>" >
+  <% flash.each do |key, value| %>
+    <div data-controller="flash-message" data-action="click->flash-message#removeMessage" id="flash-message" class="flash <%= key %> alert alert-success bold text-black" data-flash-message-target="message"><%= value %></div>
+  <% end %>
+  <div class="mb-4 d-flex justify-content-center align-items-center">
+    <div class="mb-4 card card-primary" style="width: 100%;">
+      <div class="card-header bg-primary text-white text-center">
+        <h4 class="text-center">Detalhes do Equipamento</h4>
+      </div>
+      <div class="card-body">
+        <div class="align-items-center justify-content-center mb-4">
+          <% if equipament.image.attached? %>
+            <%= image_tag equipament.image, class: " img-fluid img-thumbnail me-3", style: "max-width: 300px; height: auto;", alt: "Imagem do Equipamento" %>
+          <% else %>
+            <%= image_tag 'semfoto.png', class: "img-fluid img-thumbnail me-3", style: "max-width: 300px; height: auto;", alt: "Imagem do Equipamento" %>
+          <% end %>
+        </div>
+        <div class="mb-2">
+          <span class="fw-bold">Nome: </span>
+          <span class="mx-3"><%= equipament.name %></span>
+        </div>
+        <div class="mb-2">
+          <span class="fw-bold">Número de Série: </span>
+          <span class="mx-3"><%= equipament.serial_number %></span>
+        </div>
+        <div class="mb-2">
+          <span class="fw-bold ml-4">Descrição: </span>
+          <span class="mx-3"><%= raw equipament.description.to_s %></span>
+        </div>
+        <div class="mb-2">
+          <span class="fw-bold">Status: </span>
+          <span class="mx-3"><%= equipament.status %></span>
+        </div>
+        <div>
+          <span class="fw-bold">Diária: </span>
+          <span class="mx-3"><%= number_to_currency(equipament.rent_value, unit: "R$ ", separator: ",", delimiter: ".") %></span>
+        </div>
+      </div>
+      <div class="card-footer d-flex justify-content-center">
+        <% if policy(equipament).update? %>
+          <%= link_to "Editar", edit_admin_equipament_path(equipament), class: "btn btn-primary me-2" %>
+        <% end %>
+        <%= link_to "Ver Lista", admin_equipaments_path, class: "btn btn-secondary" %>
+      </div>
+    </div>
+  </div>
+</div>

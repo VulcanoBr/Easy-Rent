@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perfil do Usuário</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+      <a class="navbar-brand" href="#">Aluguel de Equipamentos</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Catálogo</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Histórico de Aluguéis</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Perfil</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Suporte</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Login</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero text-center">
+    <div class="container">
+      <h1>Perfil do Usuário</h1>
+      <p>Gerencie suas informações pessoais e preferências.</p>
+    </div>
+  </section>
+
+  <!-- Perfil do Usuário -->
+  <section class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <!-- User Info Card -->
+          <div class="card">
+            <div class="card-body text-center">
+              <img src="https://via.placeholder.com/150" alt="Avatar" class="img-fluid rounded-circle mb-3">
+              <h5 class="card-title">Nome do Usuário</h5>
+              <p class="card-text">email@example.com</p>
+              <button class="btn btn-outline-primary w-100" data-bs-toggle="modal"
+                data-bs-target="#editProfileModal">Editar Perfil</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <!-- Profile Details -->
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Informações Pessoais</h5>
+              <form>
+                <div class="mb-3">
+                  <label for="profileName" class="form-label">Nome Completo</label>
+                  <input type="text" class="form-control" id="profileName" value="Nome do Usuário">
+                </div>
+                <div class="mb-3">
+                  <label for="profileEmail" class="form-label">Email</label>
+                  <input type="email" class="form-control" id="profileEmail" value="email@example.com">
+                </div>
+                <div class="mb-3">
+                  <label for="profilePhone" class="form-label">Telefone</label>
+                  <input type="text" class="form-control" id="profilePhone" value="(11) 1234-5678">
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Salvar Alterações</button>
+              </form>
+            </div>
+          </div>
+
+          <!-- User Preferences -->
+          <div class="card mt-4">
+            <div class="card-body">
+              <h5 class="card-title">Preferências</h5>
+              <form>
+                <div class="mb-3">
+                  <label for="profileNotifications" class="form-label">Notificações</label>
+                  <select id="profileNotifications" class="form-select">
+                    <option selected>Receber todas as notificações</option>
+                    <option>Somente notificações importantes</option>
+                    <option>Não receber notificações</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label for="profileLanguage" class="form-label">Idioma</label>
+                  <select id="profileLanguage" class="form-select">
+                    <option selected>Português</option>
+                    <option>Inglês</option>
+                    <option>Espanhol</option>
+                  </select>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Salvar Preferências</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Edit Profile Modal -->
+  <div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editProfileModalLabel">Editar Perfil</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="modalProfileName" class="form-label">Nome Completo</label>
+              <input type="text" class="form-control" id="modalProfileName" value="Nome do Usuário">
+            </div>
+            <div class="mb-3">
+              <label for="modalProfileEmail" class="form-label">Email</label>
+              <input type="email" class="form-control" id="modalProfileEmail" value="email@example.com">
+            </div>
+            <div class="mb-3">
+              <label for="modalProfilePhone" class="form-label">Telefone</label>
+              <input type="text" class="form-control" id="modalProfilePhone" value="(11) 1234-5678">
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Salvar Alterações</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer text-ce

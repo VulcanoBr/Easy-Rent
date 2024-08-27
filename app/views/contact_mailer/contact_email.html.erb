@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      .header {
+        text-align: center;
+        padding: 20px 0;
+        border-bottom: 1px solid #dddddd;
+      }
+      .content {
+        padding: 20px;
+      }
+      .footer {
+        text-align: center;
+        padding: 10px;
+        font-size: 12px;
+        color: #888888;
+        border-top: 1px solid #dddddd;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>Nova Mensagem de Contato</h1>
+      </div>
+      <div class="content">
+        <p>Olá,</p>
+        <p>Você recebeu uma nova mensagem de contato:</p>
+        <p><strong>Nome:</strong> <%= @name %></p>
+        <p><strong>Email:</strong> <%= @contact_email %></p>
+        <p><strong>Assunto:</strong> <%= @subject %></p>
+        <p><strong>Mensagem:</strong></p>
+        <p><%= @message %></p>
+      </div>
+      <div class="footer">
+        <p>Este é um e-mail gerado automaticamente, por favor, não responda.</p>
+      </div>
+    </div>
+  </body>
+</html>

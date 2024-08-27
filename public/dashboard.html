@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard de Aluguel de Equipamentos</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- Cabeçalho -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Dashboard</a>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Início</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Relatórios</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container mt-4">
+
+    <!-- Cartões de Resumo -->
+    <div class="row">
+      <div class="col-md-3">
+        <div class="card text-white bg-primary mb-3">
+          <div class="card-header">Total de Equipamentos Alugados</div>
+          <div class="card-body">
+            <h5 class="card-title">150</h5>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card text-white bg-success mb-3">
+          <div class="card-header">Total de Clientes Ativos</div>
+          <div class="card-body">
+            <h5 class="card-title">45</h5>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card text-white bg-warning mb-3">
+          <div class="card-header">Receita Mensal</div>
+          <div class="card-body">
+            <h5 class="card-title">R$ 10,000</h5>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card text-white bg-danger mb-3">
+          <div class="card-header">Equipamentos Disponíveis</div>
+          <div class="card-body">
+            <h5 class="card-title">20</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Gráficos e Tabelas -->
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card mb-3">
+          <div class="card-header">Aluguel de Equipamentos por Mês</div>
+          <div class="card-body">
+            <!-- Aqui você pode inserir um gráfico usando uma biblioteca como Chart.js -->
+            <canvas id="aluguelEquipamentosChart"></canvas>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card mb-3">
+          <div class="card-header">Receita por Mês</div>
+          <div class="card-body">
+            <!-- Aqui você pode inserir um gráfico usando uma biblioteca como Chart.js -->
+            <canvas id="receitaChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card mb-3">
+          <div class="card-header">Equipamentos Recentemente Alugados</div>
+          <div class="card-body">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Equipamento</th>
+                  <th>Cliente</th>
+                  <th>Data de Aluguel</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Dados dos equipamentos alugados -->
+                <tr>
+                  <td>Escavadeira</td>
+                  <td>João Silva</td>
+                  <td>01/06/2024</td>
+                </tr>
+                <tr>
+                  <td>Betoneira</td>
+                  <td>Maria Souza</td>
+                  <td>02/06/2024</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card mb-3">
+          <div class="card-header">Equipamentos que Necessitam de Manutenção</div>
+          <div class="card-body">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Equipamento</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Dados dos equipamentos -->
+                <tr>
+                  <td>Guindaste</td>
+                  <td>Em manutenção</td>
+                </tr>
+                <tr>
+                  <td>Rolo Compactador</td>
+                  <td>Necessita Revisão</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Seções Detalhadas -->
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card mb-3">
+          <div class="card-header">Equipamentos Mais Alugados</div>
+          <div class="card-body">
+            <ul>
+              <li>Escavadeira</li>
+              <li>Betoneira</li>
+              <li>Guindaste</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card mb-3">
+          <div class="card-header">Feedback dos Clientes</div>
+          <div class="card-body">
+            <ul>
+              <li>João Silva: Excelente serviço!</li>
+              <li>Maria Souza: Equipamentos em ótimo estado.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    // Exemplo de como você pode adicionar gráficos usando Chart.js
+    const ctx1 = document.getElementById('aluguelEquipamentosChart').getContext('2d');
+    const ctx2 = document.getElementById('receitaChart').getContext('2d');
+    const aluguelEquipamentosChart = new Chart(ctx1, {
+      type: 'line',
+      data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+        datasets: [{
+          label: 'Aluguel de Equipamentos',
+          data: [10, 20, 30, 40, 50, 60],
+          borderColor: 'rgba(75, 192, 192, 1)',
+          borderWidth: 1
+        }]
+      }
+    });
+    const receitaChart = new Chart(ctx2, {
+      type: 'bar',
+      data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+        datasets: [{
+          label: 'Receita',
+          data: [5000, 10000, 7500, 20000, 15000, 10000],
+          backgroundColor: 'rgba(153, 102, 255, 1)',
+          borderWidth: 1
+        }]
+      }
+    });
+  </script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

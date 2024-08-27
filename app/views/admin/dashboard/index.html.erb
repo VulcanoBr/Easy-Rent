@@ -1,0 +1,68 @@
+<div class="container mt-4">
+  <% flash.each do |key, value| %>
+    <div data-controller="flash-message" data-action="click->flash-message#removeMessage" id="flash-message" class="flash <%= key %> alert alert-success bold text-black" data-flash-message-target="message"><%= value %></div>
+  <% end %>
+  <h1 class="mb-4 text-center">Dashboard</h1>
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
+    <div class="col">
+      <div class="card">
+        <div class="card-header bg-primary text-white">
+          <h5 class="card-title text-center">Total de Equipamentos</h5>
+        </div>
+        <div class="card-body text-center">
+          <p class="card-text"><strong><%= @total_equipaments %></strong></p>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <div class="card-header bg-success text-white">
+          <h5 class="card-title text-center">Equipamentos Alugados</h5>
+        </div>
+        <div class="card-body text-center">
+          <p class="card-text"><strong><%= @total_orders %></strong></p>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <div class="card-header bg-warning text-white">
+          <h5 class="card-title text-center">Equipamentos Disponíveis</h5>
+        </div>
+        <div class="card-body text-center">
+          <p class="card-text"><strong><%= @available_equipaments_count %></strong></p>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <div class="card-header bg-danger text-white">
+          <h5 class="card-title text-center">Equipamentos em Manutenção</h5>
+        </div>
+        <div class="card-body text-center">
+          <p class="card-text"><strong><%= @maintenance_equipaments_count %></strong></p>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <div class="card-header bg-info text-white">
+          <h5 class="card-title text-center">Custo de Manutenção</h5>
+        </div>
+        <div class="card-body text-center">
+          <p class="card-text"><strong><%= number_to_currency(@maintenance_total_value, unit: "R$ ", separator: ",", delimiter: ".") %></strong></p>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <div class="card-header bg-secondary text-white">
+          <h5 class="card-title text-center">Valor de Alugados</h5>
+        </div>
+        <div class="card-body text-center">
+          <p class="card-text"><strong><%= number_to_currency(@total_value, unit: "R$ ", separator: ",", delimiter: ".") %></strong></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

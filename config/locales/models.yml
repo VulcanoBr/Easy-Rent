@@ -1,0 +1,21 @@
+pt-BR:
+  activerecord:
+    models:
+      user: Administrador
+      customer: Cliente
+      equipament: Equipamento
+      order: Pedido
+    attributes:
+      order:
+        id: Identificador
+        customer_id: Cliente
+        equipament_id: Equipamento
+        order_code: Codigo Pedido
+        period_start: Inicio
+        period_end: Fim
+        status: Status
+        rent_value: Diária
+        tot_rent_value: Aluguel
+      user:
+        email: Email
+        role: Permissão

@@ -1,0 +1,62 @@
+<div class="container-fluid">
+  <% flash.each do |key, value| %>
+    <div data-controller="flash-message" data-action="click->flash-message#removeMessage" id="flash-message" class="flash <%= key %> alert alert-success bold text-black" data-flash-message-target="message"><%= value %></div>
+  <% end %>
+  <div class="d-flex align-items-center mb-2">
+    <h3 class="flex-grow-1">Lista de Pedidos com pagamento pendente</h3>
+    <div class="input-group ms-3" style="width: 550px;">
+      <%= form_with url: put_canceled_order_admin_orders_path, method: :get, local: true, class: "d-flex w-100" do %>
+        <%= text_field_tag :search, nil, class: "form-control input-sm", placeholder: "Pesquisar Pedido(s)...", aria_label: "Pesquisar" %>
+        <%= button_tag(type: 'submit', class: "btn btn-success me-3", title: "Pesquisar") do %>
+          <%= image_tag "icons/gray/lupa.svg" %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <% if @pagy.count > 9 %>
+      <div class="col-md-12 d-flex justify-content-center">
+        <%= pagy_bootstrap_nav(@pagy).html_safe%>
+      </div>
+    <% end %>
+  </div>
+  <section>
+    <div class="row">
+      <div class="col">
+        <table class="table table-bordered table-striped">
+          <thead class="thead-dark">
+            <tr>
+              <th class="bg-black text-white" scope="col">Código Pedido</th>
+              <th class="bg-black text-white" scope="col">Cliente</th>
+              <th class="bg-black text-white" scope="col">Equipamento</th>
+              <th class="bg-black text-white" scope="col">Início</th>
+              <th class="bg-black text-white" scope="col">Fim</th>
+              <th class="bg-black text-white" scope="col">R$ Aluguel</th>
+              <th class="bg-black text-white" scope="col">Status</th>
+              <th class="bg-black text-white" scope="col">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Exemplo de pedidos cadastrados -->
+            <% @orders.each do |order| %>
+              <tr>
+                <td><%= order&.order_code %></td>
+                <td><%= order.customer.name %></td>
+                <td><%= order.equipament.name %></td>
+                <td><%= order&.period_start.strftime('%d/%m/%Y') %></td>
+                <td><%= order&.period_end.strftime('%d/%m/%Y') %></td>
+                <td><%= number_to_currency(order.tot_rent_value, unit: "R$ ", separator: ",", delimiter: ".") %></td>
+                <td><%= order.status %></td>
+                <td class="d-flex justify-content-between">
+                  <%= link_to cancel_order_admin_order_path(order), class: "text-black-500 hover:underline", title: "Cancelar", alt: "cancel"  do %>
+                    <%= image_tag "icons/gray/close.svg" %>
+                  <% end %>
+                </td>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

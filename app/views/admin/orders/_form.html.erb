@@ -1,0 +1,96 @@
+<section class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-md-8 mb-3">
+      <div class="card mb-4">
+        <div class="card-header bg-primary text-white text-center">
+          <h4>Cadastro de Pedidos</h4>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <%= simple_form_for [:admin, @order] do |form| %>
+              <div class="row">
+                <div class="col-12 col-md-8">
+                  <%= form.input :customer_id, required: true do  %>
+                    <div data-controller="autocomplete" data-autocomplete-url-value="<%= search_admin_customers_path %>" role="combobox">
+                      <input type="text" class="form-control" data-autocomplete-target="input" value="<%= form.object.customer&.name %>">
+                      <%= form.input_field :customer_id, as: :hidden, data: { autocomplete_target: "hidden" } %>
+                      <ul class="list-group" data-autocomplete-target="results"></ul>
+                    
+                    </div>
+                  <% end %>
+                  <%= form.full_error :customer, class: "mb-3" %>
+                </div>
+                <div class="row" data-controller="order-equipament" data-order-equipament-url-value="<%= search_admin_equipaments_path %>" role="combobox">
+                  <div class="col-12 col-md-4">
+                    <%= form.input :period_start, as: :date, html5: true, input_html: { min: @min_date,  data: { order_equipament_target: "periodStart"}} %>
+                  </div>
+                  <div class="col-12 col-md-4">
+                    <%= form.input :period_end, html5: true, as: :date, input_html: { min: @min_date, data: { order_equipament_target: "periodEnd"}} %>
+                  </div>
+                  <div class="col-12 col-md-8">
+                    <%= form.input :equipament_id, required: true do  %>
+                      <div role="combobox">
+                        <input type="text" class="form-control" data-order-equipament-target="input" value="<%= form.object.equipament&.name %>">
+                        <%= form.input_field :equipament_id, as: :hidden, data: { order_equipament_target: "hidden" } %>
+                        <ul class="list-group" data-order-equipament-target="results"></ul>
+                      
+                      </div>
+                    <% end %>
+                    <%= form.full_error :equipament %>
+                  </div>
+                  <div class="d-flex">
+                    <div class="col-md-4 mb-3 me-4">
+                      <%= form.input :rent_value_display, input_html: { class: 'form-control', readonly: true, value: format_currency(@order&.rent_value), data: { order_equipament_target: "rentValueDisplay" } } %>
+                      <%= form.hidden_field :rent_value, "data-order-equipament-target": "rentValue" %>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                      <%= form.input :tot_rent_value_display, input_html: { class: 'form-control', readonly: true, value: format_currency(@order&.tot_rent_value), data: { order_equipament_target: "totalValueDisplay" }, id:"order_tot_rent_value"} %>
+                      <%= form.hidden_field :tot_rent_value, "data-order-equipament-target": "totalValue" %>
+                    </div>
+                  </div>
+                  <!-- Campos de Pagamento -->
+                  <div data-order-equipament-target="paymentOptions" class="mt-3 d-none">
+                    <h5>Opções de Pagamento</h5>
+                    <div>
+                    <div class="form-check">
+                      <%= form.radio_button :payment_method, 'pix', class: 'form-check-input', data: { action: 'change->order-equipament#onPaymentMethodChange' } %>
+                      <%= form.label :payment_method_pix, 'PIX', class: 'form-check-label' %>
+                    </div>
+                    <div class="form-check">
+                      <%= form.radio_button :payment_method, 'boleto', class: 'form-check-input', data: { action: 'change->order-equipament#onPaymentMethodChange' } %>
+                      <%= form.label :payment_method_boleto, 'Boleto', class: 'form-check-label' %>
+                    </div>
+                    </div>
+                    <div id="pix-fields" class="d-none" data-order-equipament-target="pixFields">
+                      <div class="row mb-3">
+                        <div class="col-md-6">
+                          <%= form.input :total_rent_value, as: :string, input_html: { class: 'form-control', readonly: true, "data-order-equipament-target": "pixTotalValue" } %>
+                        </div>
+                        <div class="col-md-6">
+                          <%= form.input :pix_code, label: 'Código PIX', input_html: { class: 'form-control', readonly: true, value: '123456789012345' } %>
+                        </div>
+                      </div>
+                    </div>
+                    <div id="boleto-fields" class="d-none" data-order-equipament-target="boletoFields">
+                      <div class="row mb-3">
+                        <div class="col-md-5">
+                          <%= form.input :total_rent_value, as: :string, input_html: { class: 'form-control', readonly: true, "data-order-equipament-target": "boletoTotalValue" } %>
+                        </div>
+                        <div class="col-md-7">
+                          <%= form.input :ticket_barcode, label: 'Código de Barras do Boleto', input_html: { class: 'form-control', readonly: true, value: '12345678901234567890123456789012345678901234' } %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer d-flex justify-content-between">
+                <%= link_to "Voltar", admin_orders_path, class: "btn btn-secondary"%>
+                <%= form.button :button, class:"btn btn-primary" %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>

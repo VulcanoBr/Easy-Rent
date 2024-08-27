@@ -1,0 +1,52 @@
+<section class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header bg-primary text-white text-center">
+          <h4>Cadastro de Manutenção</h4>
+        </div>
+        <div class="card-body">
+          <%= simple_form_for [:admin, @maintenance] do |form| %>
+            <%= form.input :equipament_id, as: :hidden, input_html: { value: @equipament.id } %>
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label for="customer_name" class="form-label">Equipamento:</label>
+                <div class="form-control-plaintext">
+                  <%= @equipament.name %>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label for="equipament_name" class="form-label">Número de Série:</label>
+                <div class="form-control-plaintext">
+                  <%= @equipament.serial_number %>
+                </div>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-12 col-md-10">
+                <%= form.input :maintenance_type, as: :radio_buttons, collection: Maintenance.maintenance_types.keys.map { |type| [type.humanize, type] }, label: 'Tipo de Manutenção:', wrapper: :horizontal_collection_inline %>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <%= form.input :period_start, as: :date, html5: true, input_html: { class: 'form-control', max: @max_date, required: true } %>
+              </div>
+              <div class="col-md-6">
+                <%= form.input :period_end, as: :date, html5: true, input_html: { class: 'form-control', max: @max_date, required: true, disabled: action_name == 'new' } %>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-12 col-md-6">
+                <%= form.input :maintenance_value, disabled: action_name == 'new' %>
+              </div>
+            </div>
+            <div class="card-footer d-flex justify-content-between">
+              <%= link_to "Voltar", admin_maintenances_path, class: "btn btn-secondary" %>
+              <%= form.button :submit, class: "btn btn-primary" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

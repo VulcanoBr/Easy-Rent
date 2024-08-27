@@ -1,0 +1,28 @@
+Confirmando Recebimento do Pagamento
+Olá,
+<%= @customer&.name %>
+Estamos felizes em confirmar o pagamento do seu pedido de aluguel de equipamentos. Abaixo estão os detalhes do seu pedido:</p>
+Numero do pedido: <%= @order&.order_code %>
+Equipamento: <%= @equipament&.name %>
+Periodo de Aluguel: <%= @order&.period_start.strftime('%d/%m/%Y') %>  a  <%= @order.period_end.strftime('%d/%m/%Y')%>
+Valor da Diária: <%= number_to_currency(@order&.rent_value, unit: "R$ ", separator: ",", delimiter: ".") %>
+Valor Total: <%= number_to_currency(@order&.tot_rent_value, unit: "R$ ", separator: ",", delimiter: ".") %>
+Metodo de pagamento: <%= @order&.payment_method %>
+<% if @order.payment_method == "pix" %>
+  Codigo do Pix : <%= @order&.pix_code %>
+<% end %>
+<% if @order.payment_method == "boleto" %>
+  Codigo de Barras : <%= @order&.ticket_barcode %>
+<% end %>
+<% if @order.payment_method == "cartao" %>
+  Numero de parcelas: <%= @order&.installments %>
+  <% val_parc = @order.tot_rent_value / @order.installments %>
+  Valor da parcela: <%= number_to_currency((val_parc) , unit: "R$ ", separator: ",", delimiter: ".") %>
+<% end %>
+Este é um e-mail gerado automaticamente, por favor, não responda.
+Contato para ajuda
+Telefone:(99) 9999-9999
+Email: contato@equiporent.com
+Agradecemos por escolher nossos serviços. Se tiver alguma dúvida ou precisar de assistência, 
+não hesite em entrar em contato conosco.
+Atenciosamente, EquipoRent

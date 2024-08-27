@@ -1,0 +1,42 @@
+<div class="container" id="<%= dom_id customer %>">
+  <% flash.each do |key, value| %>
+    <div data-controller="flash-message" data-action="click->flash-message#removeMessage" id="flash-message" class="flash <%= key %> alert alert-success bold text-black" data-flash-message-target="message"><%= value %></div>
+  <% end %>
+  <div class="mb-4 card card-primary">
+    <div class="card-header">
+      <h4>Detalhes do Cliente</h4>
+    </div>
+    <div class="card-body">
+      <div class="mb-2">
+        <spam class="flex-grow-1 fw-bold">Nome </spam>
+        <spam class="mx-3"> <%= customer.name %> </spam>
+      </div>
+      <div class="mb-2">
+        <spam class="flex-grow-1 fw-bold">Email: </spam>
+        <spam class="mx-3"> <%= customer.email %> </spam>
+      </div>
+      <div class="mb-2">
+        <spam class="flex-grow-1 fw-bold">Cpf/Cnpj: </spam>
+        <spam class="mx-3"> <%= customer.identification %> </spam>
+      </div>
+      <div class="mb-2">
+        <spam class="flex-grow-1 fw-bold">Telefone </spam>
+        <spam class="mx-3"> <%= customer.mobile_phone %> </spam>
+      </div>
+      <div class="mb-2">
+        <spam class="flex-grow-1 fw-bold">Data Nascimento </spam>
+        <spam class="mx-3"> <%= customer.dob.strftime("%d/%m/%Y") %> </spam>
+      </div>
+      <div class="mb-2">
+        <spam class="flex-grow-1 fw-bold">Endereço </spam>
+        <spam class="mx-3"> <%= customer.address %> </spam>
+      </div>
+    </div>
+    <div class="card-footer">
+      <% if policy(customer).update? %>
+        <a href="<%= edit_admin_customer_path(customer) %>" class="btn btn-primary">Editar</a>
+      <% end %>
+      <a href="<%= admin_customers_path %>" class="btn btn-secondary">Ver Lista</a>
+    </div>
+  </div>
+</div>

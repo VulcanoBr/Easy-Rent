@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aluguel de Equipamentos</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css">
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Logo</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Equipamentos</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Clientes</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Pedidos</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Sobre</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Contato</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Login</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Banner Principal -->
+  <div class="jumbotron text-center">
+    <h1 class="display-4">Alugue Equipamentos com Facilidade e Rapidez</h1>
+    <p class="lead">Os melhores equipamentos ao seu alcance.</p>
+    <a class="btn btn-primary btn-lg" href="#" role="button">Explore Equipamentos</a>
+  </div>
+
+  <!-- Equipamentos Populares -->
+  <div class="container">
+    <h2>Equipamentos Populares</h2>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card">
+          <img src="equipamento1.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Equipamento 1</h5>
+            <p class="card-text">Descrição breve do equipamento.</p>
+            <a href="#" class="btn btn-primary">Ver Mais</a>
+          </div>
+        </div>
+      </div>
+      <!-- Repetir para outros equipamentos -->
+    </div>
+  </div>
+
+  <!-- Como Funciona -->
+  <div class="container my-5">
+    <h2>Como Funciona</h2>
+    <div class="row">
+      <div class="col-md-3 text-center">
+        <i class="bi bi-search" style="font-size: 2rem;"></i>
+        <h4>Pesquisar</h4>
+        <p>Navegue pelos equipamentos disponíveis.</p>
+      </div>
+      <div class="col-md-3 text-center">
+        <i class="bi bi-box-seam" style="font-size: 2rem;"></i>
+        <h4>Escolher</h4>
+        <p>Selecione o equipamento que atende às suas necessidades.</p>
+      </div>
+      <div class="col-md-3 text-center">
+        <i class="bi bi-calendar-check" style="font-size: 2rem;"></i>
+        <h4>Reservar</h4>
+        <p>Escolha as datas e faça a reserva online.</p>
+      </div>
+      <div class="col-md-3 text-center">
+        <i class="bi bi-tools" style="font-size: 2rem;"></i>
+        <h4>Usar</h4>
+        <p>Receba o equipamento e utilize conforme necessário.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Depoimentos de Clientes -->
+  <div class="container my-5">
+    <h2>Depoimentos de Clientes</h2>
+    <div class="row">
+      <div class="col-md-4">
+        <blockquote class="blockquote">
+          <p class="mb-0">Excelente serviço, recomendo a todos!</p>
+          <footer class="blockquote-footer">Cliente 1</footer>
+        </blockquote>
+      </div>
+      <!-- Repetir para outros depoimentos -->
+    </div>
+  </div>
+
+  <!-- Formulário de Contato -->
+  <div class="container my-5">
+    <h2>Contato</h2>
+    <form>
+      <div class="form-group">
+        <label for="name">Nome</label>
+        <input type="text" class="form-control" id="name" placeholder="Seu nome">
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email" placeholder="Seu email">
+      </div>
+      <div class="form-group">
+        <label for="subject">Assunto</label>
+        <input type="text" class="form-control" id="subject" placeholder="Assunto">
+      </div>
+      <div class="form-group">
+        <label for="message">Mensagem</label>
+        <textarea class="form-control" id="message" rows="3"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Enviar</button>
+    </form>
+  </div>
+
+  <!-- Rodapé -->
+  <footer class="bg-light text-center text-lg-start">
+    <div class="container p-4">
+      <div class="row">
+        <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+          <h5 class="text-uppercase">Links Úteis</h5>
+          <ul class="list-unstyled">
+            <li><a href="#!" class="text-dark">Política de Privacidade</a></li>
+            <li><a href="#!" class="text-dark">Termos de Serviço</a></li>
+            <li><a href="#!" class="text-dark">Suporte</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+          <h5 class="text-uppercase">Contato</h5>
+          <p>Endereço, Telefone, Email</p>
+          <a href="#" class="text-dark"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="text-dark"><i class="bi bi-twitter"></i></a>
+          <a href="#" class="text-dark"><i class="bi bi-instagram"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"></script>
+</body>
+
+</html>

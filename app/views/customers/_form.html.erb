@@ -1,0 +1,39 @@
+<section class="container-fluid ">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="card mb-4">
+        <div class="card-header">
+          <h4>Cadastro de Clientes</h4>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <%= simple_form_for @customer do |form| %>
+              <div class="row">
+                <div class="ml-4 col-12 col-md-8">
+                  <%= form.input :name %>
+                </div>
+                <div class="col-12 col-md-4">
+                  <%= form.input :dob, max: Date.today, html5: true %>
+                </div>
+              </div>
+              <%= form.input :email %>
+              <div class="row">
+                <div class="col-12 col-md-3">
+                  <%= form.input :identification %>
+                </div>
+                <div class="col-12 col-md-3">
+                  <%= form.input :mobile_phone %>
+                </div>
+              </div>
+              <%= form.input :address %>
+              <div class="card-footer d-flex justify-content-between">
+                <%= link_to "Voltar", admin_customers_path, class: "btn btn-secondary"%>
+                <%= form.button :button, class:"btn btn-primary" %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
