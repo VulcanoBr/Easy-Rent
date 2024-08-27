@@ -182,7 +182,7 @@ Criação da base de dados
 - rails db:migrate
   - OBS: Caso queira popular a base de dados, executar no terminal "rails dev:reset"
 - rails db:seed para criar usuario admin
-  OBS: Sempre que executar no terminal "rails dev:reset" executar tambem "rails db:seed"
+- OBS: Sempre que executar no terminal "rails dev:reset" executar tambem "rails db:seed"
 
 Com todas dependências instaladas, execute no terminal ./bin/dev, e acesse
 `http://localhost:3000` no seu navegador, para pagina principal.
