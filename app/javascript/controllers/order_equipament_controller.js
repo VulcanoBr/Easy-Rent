@@ -25,11 +25,6 @@ class OrderEquipamentController extends Autocomplete {
   connect() {
     super.connect()
     this.checkPaymentOptions()
-    console.log('aqui no connect')
-    console.log('Has periodStart target:', this.hasPeriodStartTarget)
-    console.log('Has periodEnd target:', this.hasPeriodEndTarget)
-    console.log('Has rentValue target:', this.hasRentValueTarget)
-    console.log('Has totalValue target:', this.hasTotalValueTarget)
     this.element.addEventListener(
       'autocomplete.change',
       this.onAutocompleteChange.bind(this)
@@ -48,10 +43,6 @@ class OrderEquipamentController extends Autocomplete {
     }
     this.pixCode = '1234567890123456789012345' // Código PIX fixo
     this.boletoCode = '1234567890123456789012' // Código Boleto fixo
-
-    //  if (this.hasRentValueTarget && this.rentValueTarget.value) {
-    //    this.formatRentValue(this.rentValueTarget.value)
-    //  }
   }
 
   checkPaymentOptions() {
@@ -67,22 +58,13 @@ class OrderEquipamentController extends Autocomplete {
   }
 
   onAutocompleteChange(event) {
-    console.log(`aqui change`)
-    console.log('Autocomplete change event:', event)
-    console.log('Event detail:', event.detail)
-
     const selectedItem = event.detail.selected
-    console.log('Selected item:', selectedItem)
 
     if (selectedItem) {
-      console.log('Selected item dataset:', selectedItem.dataset)
       const rentValue = selectedItem.dataset.rentValue
-      console.log('Rent value:', rentValue)
 
       if (rentValue && this.hasRentValueTarget) {
         this.rentValueTarget.value = rentValue
-        console.log('Rent value set to:', this.rentValueTarget.value)
-        // this.formatValue(this.rentValueTarget)
         this.calculateTotalRent()
       } else {
         console.error('Rent value is undefined.')
@@ -114,16 +96,14 @@ class OrderEquipamentController extends Autocomplete {
     const startDate = this.hasPeriodStartTarget
       ? new Date(this.periodStartTarget.value)
       : null
-    console.log('Date Start :', startDate)
+
     const endDate = this.hasPeriodEndTarget
       ? new Date(this.periodEndTarget.value)
       : null
-    console.log('Date End :', endDate)
+
     const rentValue = this.hasRentValueTarget
       ? parseFloat(this.rentValueTarget.value)
       : 0
-    console.log('Rent Value :', rentValue)
-    // (startDate && endDate && !isNaN(rentValue))
 
     if (
       startDate &&
@@ -138,10 +118,7 @@ class OrderEquipamentController extends Autocomplete {
       const totalRent = diffDays * rentValue
 
       totalValueElement.value = totalRent.toFixed(2)
-      console.log('Total rent calculated:', totalRent.toFixed(2))
-      //totalValueElement.dataset.unformattedValue = totalRent.toFixed(2)
-      //totalValueElement.value = this.formatCurrency(totalRent)
-      //this.totalValueTarget.dataset.unformattedValue = totalRent.toFixed(2)
+
       this.totalValueDisplayTarget.value = this.formatCurrency(totalRent)
       this.rentValueDisplayTarget.value = this.formatCurrency(rentValue)
 
@@ -155,22 +132,6 @@ class OrderEquipamentController extends Autocomplete {
       this.showPaymentOptions()
     } else {
       this.zeroOutValues()
-      //  totalValueElement.value = '0.00'
-      console.log('Unable to calculate total rent: missing or invalid data')
-
-      // Formatar o valor zero para o formato brasileiro
-      //  const zeroFormatted = this.formatCurrency(0)
-      //  this.totalValueDisplayTarget.value = zeroFormatted
-
-      // Zerar também os campos de PIX e Boleto
-      //  if (this.hasPixTotalValueTarget) {
-      //    this.pixTotalValueTarget.value = zeroFormatted
-      //  }
-      //  if (this.hasBoletoTotalValueTarget) {
-      //    this.boletoTotalValueTarget.value = zeroFormatted
-      //  }
-      //  console.log('Unable to calculate total rent: missing or invalid data')
-      //  this.hidePaymentOptions()
     }
   }
 
@@ -197,7 +158,6 @@ class OrderEquipamentController extends Autocomplete {
       this.boletoTotalValueTarget.value = zeroFormatted
     }
 
-    console.log('Values zeroed out due to invalid or missing data')
     this.hidePaymentOptions()
   }
 
@@ -206,7 +166,6 @@ class OrderEquipamentController extends Autocomplete {
   }
 
   showPaymentOptions() {
-    //if (this.hasPaymentOptionsTarget) {
     this.paymentOptionsTarget.classList.remove('d-none')
     const paymentMethod = document.querySelector(
       'input[name="order[payment_method]"]:checked'
@@ -220,13 +179,10 @@ class OrderEquipamentController extends Autocomplete {
       this.boletoFieldsTarget.classList.remove('d-none')
       this.boletoTotalValueTarget.value = formattedValue
     }
-    //}
   }
 
   hidePaymentOptions() {
-    // if (this.hasPaymentOptionsTarget) {
     this.paymentOptionsTarget.classList.add('d-none')
-    // }
   }
 
   onPaymentMethodChange(event) {

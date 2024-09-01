@@ -10,7 +10,6 @@ export default class extends Controller {
 
   addMaskToPhoneFields() {
     var input_phone = this.inputPhoneTarget.value
-    console.log('Input target:', input_phone)
     let value_phone = input_phone.replace(/\D/g, '')
     let mask
 

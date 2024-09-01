@@ -13,11 +13,7 @@ export default class extends Controller {
   ]
 
   connect() {
-    console.log('payment controller ')
-    // document.addEventListener('DOMContentLoaded', () => {
     this.togglePaymentFieldsOnLoad()
-    // })
-    //this.togglePaymentFieldsOnLoad()
   }
 
   togglePaymentFields(event) {
@@ -25,7 +21,6 @@ export default class extends Controller {
       ? event.target.value
       : this.currentPaymentMethod()
 
-    console.log(`Título: ${paymentMethod}`)
     this.creditCardFieldsTarget.classList.toggle(
       'd-none',
       paymentMethod !== 'cartao'
@@ -85,7 +80,6 @@ export default class extends Controller {
 
   // Listen to the custom event 'rental:totalCalculated'
   totalCalculated(event) {
-    console.log('aqui no calculo em apyment')
     const totalValue = event.detail.totalValue
     this.data.set('totalValue', totalValue) // Store the total value
 
@@ -94,95 +88,18 @@ export default class extends Controller {
   }
 
   togglePaymentFieldsOnLoad() {
-    console.log('aqui no onLoad')
     const paymentMethod = this.currentPaymentMethod()
-    console.log(`OnLoad: ${paymentMethod}`)
 
     if (paymentMethod === 'cartao') {
-      // || paymentMethod == undefined) {
       this.creditCardFieldsTarget.classList.remove('d-none')
     }
     if (paymentMethod) {
       this.togglePaymentFields()
-      // this.togglePaymentFields({ target: { value: paymentMethod } })
     }
-    // if (paymentMethod === 'cartao') {
-    //   console.log('aqui no metodo cartão')
-    //   this.creditCardFieldsTarget.classList.remove('d-none')
-    // }
   }
 
   currentPaymentMethod() {
-    console.log(
-      `current : ${document.querySelector(
-        'input[name="order[payment_method]"]:checked'
-      )}`
-    )
     return document.querySelector('input[name="order[payment_method]"]:checked')
       ?.value
   }
-
-  /* togglePaymentFields(event) {
-    console.log('payment event ')
-    const paymentMethod = event
-      ? event.target.value
-      : this.currentPaymentMethod()
-
-    if (this.hasCreditCardFieldsTarget) {
-      this.creditCardFieldsTarget.classList.add('d-none')
-    }
-    if (this.hasPixFieldsTarget) {
-      this.pixFieldsTarget.classList.add('d-none')
-    }
-    if (this.hasBoletoFieldsTarget) {
-      this.boletoFieldsTarget.classList.add('d-none')
-    }
-    switch (paymentMethod) {
-      case 'cartao':
-        this.creditCardFieldsTarget.classList.remove('d-none')
-        break
-      case 'pix':
-        this.pixFieldsTarget.classList.remove('d-none')
-        this.loadPixData()
-        break
-      case 'boleto':
-        this.boletoFieldsTarget.classList.remove('d-none')
-        this.loadBoletoData()
-        break
-    }
-  }
-
-  loadPixData() {
-    const totalRentValue = document.querySelector(
-      'input[name="tot_rent_value"]'
-    ).value
-    document.querySelector('input[name="pix_amount"]').value = totalRentValue
-    document.querySelector('input[name="pix_code"]').value =
-      this.generateRandomCode(15)
-  }
-
-  loadBoletoData() {
-    const totalRentValue = document.querySelector(
-      'input[name="tot_rent_value"]'
-    ).value
-    document.querySelector('input[name="boleto_amount"]').value = totalRentValue
-    document.querySelector('input[name="boleto_code"]').value =
-      this.generateRandomCode(20)
-  }
-
-  generateRandomCode(length) {
-    const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-    let code = ''
-    for (let i = 0; i < length; i++) {
-      const randomIndex = Math.floor(Math.random() * chars.length)
-      code += chars[randomIndex]
-    }
-    return code
-  }
-
-  currentPaymentMethod() {
-    return document.querySelector(
-      'input[name="payment[payment_method]"]:checked'
-    )?.value
-  } */
 }

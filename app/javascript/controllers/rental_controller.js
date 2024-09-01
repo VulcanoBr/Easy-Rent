@@ -12,7 +12,6 @@ export default class extends Controller {
   ]
 
   connect() {
-    console.log('Rental controller connected') // Adicione este console.log para verificar a conexão
     this.calculateTotal()
     this.showPaymentOptions()
   }
@@ -30,7 +29,6 @@ export default class extends Controller {
         style: 'currency',
         currency: 'BRL'
       })
-      console.log('Formatted Total Value:', formattedTotalValue)
       this.totalValueDisplayTarget.value = formattedTotalValue
       // Armazenar o valor real
       this.totalValueTarget.value = totalValue.toFixed(2)
@@ -45,7 +43,6 @@ export default class extends Controller {
 
   showPaymentOptions() {
     const endDateValue = this.endDateTarget.value
-    console.log('aqui no show')
     if (endDateValue && this.hasPaymentOptionsTarget) {
       this.paymentOptionsTarget.classList.remove('d-none')
 
